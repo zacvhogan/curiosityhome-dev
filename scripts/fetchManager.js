@@ -1,6 +1,3 @@
-// API key bRbqYWYktqTKgDMcSsA633XTc8AlHdKoLL9kNtfm
-
-
 // ON PAGE LOAD
 // Fetch Curiosity manifest data, get landing & max dates
 // Set max range for date picker
@@ -21,19 +18,26 @@
 // - Display as modal OR dropdown w/ lazy loading
 // - Option to copy photo link, option to see full size
 
+// TODO: MAKE THIS API KEY NOT EXPOSED
+// Not a HUGE risk as anyone can get a key and so there's little reason for anybody to find and abuse this
+// But still an issue, and obviously not something I'd do in a real world scenario
 const API_KEY = "bRbqYWYktqTKgDMcSsA633XTc8AlHdKoLL9kNtfm";
 
 let app = document.querySelector("#app");
 let manifest;
 let datePicker = document.querySelector("#date-form__date");
 let form = document.querySelector("#date-form");
+let date;
 
+// Logic for submit button, fetches and displays data/images
 let submitButton = document.querySelector("#date-form__submit");
 submitButton.addEventListener("click", (event) => (getPhotos(event)));
 
-getManifest();
 
-async function getManifest() {  
+// Fetch photo manifest, animate page load
+pagePreload();
+
+async function pagePreload() {  
 
   let manifestDate = document.querySelector("#manifest-date");
 
@@ -64,28 +68,34 @@ async function getManifest() {
 }
 
 
+
 async function getPhotos(event) {
 
-  // If form input is valid, prevent default form behavior
-  // else allow default form behavior (required fields, etc), then early exit this function
+  // Form validity check and prevent page reload
   if (form.checkValidity()){
     event.preventDefault();
   } else {
     return;
-  }
-  
+  } 
+
+  // TODO: clear results, show loading icon
 
 
   // Build fetch URL
   let urlPrefix = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=";
-  let date = datePicker.value;
+  date = datePicker.value;
   let urlSuffix = "&api_key=DEMO_KEY";
   let fetchURL = new URL(urlPrefix + date + urlSuffix);  
 
   // Fetch 
   let output = await fetch(fetchURL).then(response => response.json()).then(data => data);
   console.log(output);
-  
+
+  //TODO: if no data for this date, display message and early return  
+  if (output.photos.length == 0){
+    console.log("No data for this date");
+    return  
+  }
 
   // Sort data
   let photoArray = [];
@@ -95,20 +105,35 @@ async function getPhotos(event) {
     let camera = output.photos[i].camera.full_name;
     photoArray.push({camera, img});
   }
-
   displayPhotoList(photoArray);
 }
 
+
+
 function displayPhotoList(photoArray) {
+
+  // Fetch camera types recorded for today (look up on manifest with date converted to sols)
+  // Build new array for each camera type    
+  // Sort each photo into appropriate camera array
+  // Build list display entry for each photo - "Image # [Button: view] [Button: copy link]"
+  // Format each camera array into accordian style display
   
+  let todayCameras = getCameraList();  
+
   let resultView = document.querySelector(".results");
   let list = document.createElement('ul');
   
   
-  photoArray.forEach((value, index) => {
+  photoArray.forEach((value, index) => {  
 
     let listData = document.createElement('span');
-    listData.innerHTML = `${value.camera} - <a href=${value.img}>${index}</a>`;
+    let modalButton = document.createElement('button');
+
+
+    listData.innerHTML = `
+    ${value.camera} - <a href=${value.img} target="_blank">${index}</a>
+    `;
+
     let listEntry = document.createElement('li');
     listEntry.appendChild(listData);
     list.appendChild(listEntry);
@@ -117,5 +142,20 @@ function displayPhotoList(photoArray) {
 
   resultView.appendChild(list);
 
+}
 
+
+
+
+function getCameraList() {
+  
+  let todayManifestIndex = manifest.photo_manifest.photos.findIndex(element => {
+    if(element["earth_date"] == date){
+      return true;
+    }
+  });
+  
+  let cameraArray = manifest.photo_manifest.photos[todayManifestIndex].cameras; 
+
+  return cameraArray;
 }
