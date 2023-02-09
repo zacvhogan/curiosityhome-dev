@@ -86,3 +86,7 @@ h1 {
   width: 90%;
   border: 0.5em solid blue;
 }
+
+.text-white {
+  color: white;
+}

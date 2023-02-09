@@ -1,7 +1,8 @@
+//// PLAN
+
 // ON PAGE LOAD
 // Fetch Curiosity manifest data, get landing & max dates
 // Set max range for date picker
-
 
 // SUBMIT button event
 // Disable default form button action
@@ -18,7 +19,13 @@
 // - Display as modal OR dropdown w/ lazy loading
 // - Option to copy photo link, option to see full size
 
-// TODO: MAKE THIS API KEY NOT EXPOSED
+//// END PLAN
+
+
+
+// Set global variables
+
+// TODO: THIS API KEY SHOULD NOT BE EXPOSED
 // Not a HUGE risk as anyone can get a key and so there's little reason for anybody to find and abuse this
 // But still an issue, and obviously not something I'd do in a real world scenario
 const API_KEY = "bRbqYWYktqTKgDMcSsA633XTc8AlHdKoLL9kNtfm";
@@ -99,13 +106,61 @@ async function getPhotos(event) {
 
   // Sort data
   let photoArray = [];
+  let fhaz = [];
+  let rhaz = [];
+  let mast = [];
+  let chemcam = [];
+  let mahli = [];
+  let mardi = [];
+  let navcam = [];
+
   for(let i = 0; i < output.photos.length; i++)
   {
     let img = output.photos[i].img_src;
-    let camera = output.photos[i].camera.full_name;
+    let camera = output.photos[i].camera.name;
     photoArray.push({camera, img});
+   
   }
-  displayPhotoList(photoArray);
+  console.log(photoArray);
+
+  photoArray.forEach(element => {
+
+    switch(element.camera) {
+
+      case "FHAZ":
+        fhaz.push(element);
+        break;
+
+      case "RHAZ":
+        rhaz.push(element);
+        break;
+
+      case "MAST":
+        mast.push(element);
+        break;
+
+      case "CHEMCAM":
+        chemcam.push(element);
+        break;
+
+      case "MAHLI":
+        mahli.push(element);
+        break;
+
+      case "MARDI":
+        mardi.push(element);
+        break;
+
+      case "NAVCAM":
+        navcam.push(element);
+        break;
+    }    
+  });
+
+  let allPhotos = [fhaz, rhaz, mast, chemcam, mahli, mardi, navcam];
+  console.log(allPhotos);
+
+  //displayPhotoList(allPhotos);
 }
 
 

@@ -41,6 +41,10 @@
         Curiosity photo manifest last updated <span id="manifest-date"></span>
       </p>
 
+      <?php
+        $file = "/opt/lampp/www/private/curiosityhome/data.xml";
+        echo readfile($file);
+      ?>
 
       <div class="results">
         Results
