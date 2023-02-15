@@ -8,7 +8,10 @@
   <meta name="description" content="" />
   <link rel="stylesheet" type="text/css" href="styles/style.css" />
   <link rel="stylesheet" type="text/css" href="styles/planetSystem.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cutive+Mono">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quantico:wght@700&display=swap" rel="stylesheet">
   
 
   <link rel="icon" href="img/favicon.png">
@@ -23,7 +26,7 @@
 
   <div id="app">
 
-    <div class="nav"></div>
+    <!-- <div class="nav"></div> -->
     
     <div class="header">
       <h1>Curiosity Journey</h1>

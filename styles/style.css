@@ -4,7 +4,8 @@
 }
 
 html {
-  background-color: rgb(9, 22, 32);  
+  background-color: rgb(9, 22, 32); 
+  color: rgb(238, 247, 255); 
 }
 
 #preload { 
@@ -42,14 +43,15 @@ html {
   grid-area: nv;
   height: 50px;
   width: 100%;
-  background-color: rgb(245, 80, 80);
+  background-color: rgb(44, 51, 155);
 
 }
 
 .header {
+  padding: 1em;
   grid-area: hd;  
   text-align: center;
-  background-color: hsl(0, 84%, 74%);
+  background-color: hsl(209, 48%, 28%);
   
 }
 
@@ -58,10 +60,11 @@ html {
   background-color: pink;
 }
 
-h1 {
-  font-size: 3rem;
+h1 {  
+  font-size: 4rem;
+  line-height: 1em;
   color: rgb(255, 249, 237);
-  font-family: 'Cutive Mono', monospace;
+  font-family: 'Quantico', sans-serif;
 }
 
 .main {
@@ -70,10 +73,10 @@ h1 {
 }
 
 .date-form-container {
-  height: 3em;  
+  height: auto;;  
   margin: 0;
   padding: 1.5em;  
-  background-color: salmon;
+  background-color: rgb(40, 99, 117);
   text-align: center;
 }
 

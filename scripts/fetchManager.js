@@ -100,21 +100,43 @@ async function getPhotos(event) {
   // TODO: clear previous results
 
   // Loading icon animate
-  let backgroundPlanet = document.querySelector(".background-planet__globe");
-  let planetZoom = [
-    {transform: "scale3d(1,1,1) rotateX(-80deg)"},
-    {transform: "scale3d(2,2,2) rotateX(-80deg)"}
-    
+
+  // Animate moons - fade out
+  let moons = document.querySelectorAll(".background-planet__moon");
+  let moonFade = [
+    {opacity: 1},
+    {opacity: 0}
   ];
 
-  let planetTiming = {
-    duration: 1000,
+  let moonTiming = {
+    duration: 600,
     iterations: 1,
     easing: "ease-out",
     fill: "forwards"
   }
 
+  moons.forEach(element => element.animate(moonFade, moonTiming));
+
+
+  // Animate globe - zoom in
+  let backgroundPlanet = document.querySelector(".background-planet__globe");
+  let planetZoom = [
+    {transform: "scale3d(1,1,1) rotateX(-80deg)"},
+    {transform: "scale3d(10,10,10) rotateX(-80deg)"}
+    
+  ];
+
+  let planetTiming = {
+    delay: 1000,
+    duration: 3000,
+    iterations: 1,
+    easing: "ease",
+    fill: "forwards"
+  }
+
   backgroundPlanet.animate(planetZoom, planetTiming);
+
+  
 
   // Build fetch URL
   let urlPrefix = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=";
