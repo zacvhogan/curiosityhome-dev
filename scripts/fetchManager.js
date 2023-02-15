@@ -97,13 +97,14 @@ async function getPhotos(event) {
     return;
   } 
 
-  // TODO: clear results, show loading icon
+  // TODO: clear previous results
 
   // Loading icon animate
-  let backgroundPlanet = document.querySelector(".background-planet");
+  let backgroundPlanet = document.querySelector(".background-planet__globe");
   let planetZoom = [
-    {transform: "scale(1)"},
-    {transform: "scale(20)"}
+    {transform: "scale3d(1,1,1) rotateX(-80deg)"},
+    {transform: "scale3d(2,2,2) rotateX(-80deg)"}
+    
   ];
 
   let planetTiming = {

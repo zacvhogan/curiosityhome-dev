@@ -49,13 +49,18 @@
         <div class="background-planet__system">
           <!-- Each orbit div follows the incline set by parent div, and spins to create movement -->
           <div class="background-planet__moon-orbit background-planet__moon-orbit-1">  
-            <!-- Moon div, rounded edges -->
-            <img class="background-planet__moon background-planet__moon-1" src="img/phobos_1.svg">
-            </img>
+            <!-- Moon div -->
+            <div class="background-planet__moon background-planet__moon-1">              
+              <img src="img/phobos_1.svg">
+            </div>        
+            
           </div>
           <div class="background-planet__moon-orbit background-planet__moon-orbit-2">  
-            <img class="background-planet__moon background-planet__moon-2" src="img/deimos_1.svg">
-            </img>
+            <div class="background-planet__moon background-planet__moon-2"> 
+              <img src="img/deimos_1.svg">
+            </div>
+            
+            
           </div>
           <!-- Planet SVG element, given 3D transform rotate value inverse of background-planet__system -->
           <img class="background-planet__globe" src="img/mars_1.svg"></img>
