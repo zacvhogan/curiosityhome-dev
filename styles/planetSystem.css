@@ -1,0 +1,116 @@
+
+/* TODO: Set 3D rotation angles as VARIABLES and use math to determine rotation-correction angles
+on planet/moon billboard divs to make it easier to adjust orbital plane*/
+
+
+.background-planet__system {  
+  width: 300px;
+  height: 300px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  transform-style: preserve-3d;
+
+  transform: rotateZ(-25deg) rotateX(80deg) ;
+  
+}
+
+/* Define style for ALL orbit planes */
+.background-planet__moon-orbit {
+  height: 100%;
+  width: 100%;
+  position: absolute; 
+  transform-style: preserve-3d;
+  transform: rotateZ(0deg);  
+  background-color: rgba(0, 0, 0, 0);
+  /* border: 3px solid blue; */
+
+  /* Anim details all orbits */
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.background-planet__moon-orbit-1{
+  height: 70%;
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 15%;  
+  
+  animation-name: keys-moon-orbit-1;
+  animation-duration: 15.32s;  
+  
+}
+
+.background-planet__moon-orbit-2{  
+  animation-name: keys-moon-orbit-2;
+  animation-duration: 60.62s;  
+  
+
+}
+
+/* Styles for all moons */
+.background-planet__moon{
+  position: relative;
+  left: 100%;
+  top: 100%;
+  height: 10%;
+  width: 10%;
+  
+  
+  transform: rotateZ(-90deg) rotateX(-80deg);
+  animation-name: keys-moon-spin;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* NOTE moon sizes scale based on orbital radius (h/w of parent orbit div). Compensate for this */
+/* Inner moon (Phobos) */
+.background-planet__moon-1{  
+  height: 20%;
+  width: 20%;
+  animation-duration: 15.32s; 
+}
+
+/* Outer moon (Deimos) */
+.background-planet__moon-2{
+  height: 7%;
+  width: 7%;
+  animation-duration: 60.62s; 
+}
+
+.background-planet__globe{ 
+  display: block; 
+  position: relative;
+  height: 200px;
+  width: 200px;   
+  transform: scale(1);
+  top: 50%;
+  left: 50%;
+
+  transform-style: preserve-3d;  
+  transform: translate(-50%, -50%) rotateX(-80deg); 
+  transition: 10s;
+ 
+}
+
+
+@keyframes keys-moon-orbit-1 {
+  from {transform: rotateZ(0deg);}  
+  to {transform: rotateZ(360deg);}
+}
+
+@keyframes keys-moon-orbit-2 {
+  from {transform: rotateZ(0deg);}
+  to {transform: rotateZ(360deg);}
+}
+
+/* Animate moon div rotation to always face the camera
+and brightness changes to simulate moving into planet's shadow */
+/* Manually easing keyframes for brightness, because rotation MUST be use a linear timing function*/
+@keyframes keys-moon-spin{
+  0% {transform: rotateZ(360deg) rotateX(-80deg); filter: brightness(1);}
+  40% {filter: brightness(0.3);}
+  50% {filter: brightness(0.2);}
+  60% {filter: brightness(0.3);}
+  100% {transform: rotateZ(0deg) rotateX(-80deg); filter: brightness(1);}
+}

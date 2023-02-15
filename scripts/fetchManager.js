@@ -28,9 +28,10 @@
 // TODO: THIS API KEY SHOULD NOT BE EXPOSED
 // Not a HUGE risk as anyone can get a key and so there's little reason for anybody to find and abuse this
 // But still an issue, and obviously not something I'd do in a real world scenario
-const API_KEY = "bRbqYWYktqTKgDMcSsA633XTc8AlHdKoLL9kNtfm";
+const API_KEY = "fKE7SyalORoMRuiAsYzfftcTvhKDg0EeJqo4lMdm";
 
 let app = document.querySelector("#app");
+let loadinganim = document.querySelector("#preload");
 let manifest;
 let datePicker = document.querySelector("#date-form__date");
 let form = document.querySelector("#date-form");
@@ -66,11 +67,22 @@ async function pagePreload() {
   manifestDate.innerHTML = manifest.photo_manifest.max_date;
 
   // Show page  
-  app.animate([
-    {opacity: 0},
-    {opacity: 1}
-  ],
-  {duration: 500, fill: "forwards"});
+  // Short delay to show logo for testing - remove this later
+
+  setTimeout(()=>{
+    app.animate([
+      {opacity: 0},
+      {opacity: 1}
+    ],
+    {duration: 500, fill: "forwards"});
+  
+    preload.animate([
+      {opacity: 1},
+      {opacity: 0}
+    ],
+    {duration: 500, fill: "forwards"});
+  },0)
+  
 
 }
 
@@ -87,13 +99,28 @@ async function getPhotos(event) {
 
   // TODO: clear results, show loading icon
 
+  // Loading icon animate
+  let backgroundPlanet = document.querySelector(".background-planet");
+  let planetZoom = [
+    {transform: "scale(1)"},
+    {transform: "scale(20)"}
+  ];
+
+  let planetTiming = {
+    duration: 1000,
+    iterations: 1,
+    easing: "ease-out",
+    fill: "forwards"
+  }
+
+  backgroundPlanet.animate(planetZoom, planetTiming);
 
   // Build fetch URL
   let urlPrefix = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=";
   date = datePicker.value;
-  let urlSuffix = "&api_key=DEMO_KEY";
-  let fetchURL = new URL(urlPrefix + date + urlSuffix);  
-
+  let urlSuffix = "&api_key=";
+  let fetchURL = new URL(urlPrefix + date + urlSuffix + API_KEY);  
+  
   // Fetch 
   let output = await fetch(fetchURL).then(response => response.json()).then(data => data);
   console.log(output);
@@ -119,7 +146,6 @@ async function getPhotos(event) {
     let img = output.photos[i].img_src;
     let camera = output.photos[i].camera.name;
     photoArray.push({camera, img});
-   
   }
   console.log(photoArray);
 
@@ -160,7 +186,7 @@ async function getPhotos(event) {
   let allPhotos = [fhaz, rhaz, mast, chemcam, mahli, mardi, navcam];
   console.log(allPhotos);
 
-  //displayPhotoList(allPhotos);
+  displayPhotoList(allPhotos);
 }
 
 
@@ -173,7 +199,10 @@ function displayPhotoList(photoArray) {
   // Build list display entry for each photo - "Image # [Button: view] [Button: copy link]"
   // Format each camera array into accordian style display
   
-  let todayCameras = getCameraList();  
+  // TODO: Scrap the above.
+  // In previous function generate an array of objects 
+ 
+  
 
   let resultView = document.querySelector(".results");
   let list = document.createElement('ul');
@@ -196,6 +225,7 @@ function displayPhotoList(photoArray) {
   });
 
   resultView.appendChild(list);
+  resultView.style.opacity = 1;
 
 }
 
