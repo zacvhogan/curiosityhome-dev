@@ -86,21 +86,11 @@ h1 {
   align-items: center;
 }
 
-/* Date picker styling */
-/* TODO: Test this across mulitple browsers - solution may not be widely supported */
-::-webkit-datetime-edit-fields-wrapper { 
-  display: none; 
-}
-::-webkit-inner-spin-button {
-  margin-left: auto;
-  margin-right: auto;
-}
+
 
 
 #date-form > input, #date-form > button {
-  margin: 0em 1em 0em 1em;
-  width: 3em;
-  height: 3em;
+  margin: 0em 1em 0em 1em;  
   border-radius: 0.5em;
   padding: 0.2em;
   border: 3px solid rgb(193, 220, 255);  
@@ -109,11 +99,21 @@ h1 {
   font-size: 1rem;
 }
 
+#date-form > button {
+  width: 3em;
+  height: 3em;
+}
+
+#date-form > input {
+  
+  height: 3em;
+}
+
 /* Container for background planet
 Further styling for planet animation in planetSystem.css */
 .background-planet {
   z-index: -1;
-  padding-top: 200px;  
+  padding-top: 10vh;  
   height: 100vh;
   width: 100%;
   background-color: rgba(0 0 0 0);
