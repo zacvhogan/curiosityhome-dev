@@ -86,13 +86,24 @@ h1 {
   align-items: center;
 }
 
-#date-form > input {
+/* Date picker styling */
+/* TODO: Test this across mulitple browsers - solution may not be widely supported */
+::-webkit-datetime-edit-fields-wrapper { 
+  display: none; 
+}
+::-webkit-inner-spin-button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+#date-form > input, #date-form > button {
   margin: 0em 1em 0em 1em;
-  width: 20%;
-  height: 100%;
+  width: 3em;
+  height: 3em;
   border-radius: 0.5em;
   padding: 0.2em;
-  border: 3px solid rgb(236, 130, 87);  
+  border: 3px solid rgb(193, 220, 255);  
   box-sizing: border-box;
   background-color: white;
   font-size: 1rem;
