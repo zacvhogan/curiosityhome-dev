@@ -11,6 +11,7 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
   margin-right: auto;
   transform-style: preserve-3d;
   
+  
 
   transform: rotateZ(-25deg) rotateX(80deg) ;
   
@@ -24,7 +25,9 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
   transform-style: preserve-3d;
   transform: rotateZ(0deg);  
   background-color: rgba(0, 0, 0, 0);
-  /* border: 3px solid blue; */
+  border: 0.2em solid rgb(107, 107, 107);
+  border-radius: 50%;
+ 
 
   /* Anim details all orbits */
   animation-iteration-count: infinite;
@@ -52,8 +55,8 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
 /* Styles for all moons */
 .background-planet__moon{
   position: relative;
-  left: 100%;
-  top: 100%;
+  left: 50%;
+  top: 90%;
   height: 10%;
   width: 10%;
   
@@ -81,6 +84,8 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
 .background-planet__moon-2{
   height: 7%;
   width: 7%;
+  
+  top: 100%;
   animation-duration: 60.62s; 
 }
 
@@ -102,22 +107,34 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
 
 
 @keyframes keys-moon-orbit-1 {
-  from {transform: rotateZ(0deg);}  
-  to {transform: rotateZ(360deg);}
+  from {transform: rotateZ(360deg);}  
+  to {transform: rotateZ(0deg);}
 }
 
 @keyframes keys-moon-orbit-2 {
-  from {transform: rotateZ(0deg);}
-  to {transform: rotateZ(360deg);}
+  from {transform: rotateZ(360deg);}
+  to {transform: rotateZ(0deg);}
 }
 
 /* Animate moon div rotation to always face the camera
 and brightness changes to simulate moving into planet's shadow */
 /* Manually easing keyframes for brightness, because rotation MUST be use a linear timing function*/
 @keyframes keys-moon-spin{
-  0% {transform: rotateZ(360deg) rotateX(-80deg); filter: brightness(1);}
-  40% {filter: brightness(0.3);}
-  50% {filter: brightness(0.2);}
+  0% {transform: rotateZ(0deg) rotateX(-80deg); filter: brightness(1);}
   60% {filter: brightness(0.3);}
-  100% {transform: rotateZ(0deg) rotateX(-80deg); filter: brightness(1);}
+  70% {filter: brightness(0.2);}
+  80% {filter: brightness(0.3);}
+  100% {transform: rotateZ(360deg) rotateX(-80deg); filter: brightness(1);}
+}
+
+#terrain {
+  animation-name: animation;
+  animation-duration: 48s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes animation {
+  from {transform: translate(0%, 0%);}  
+  to {transform: translate(22.4%, 0px);}
 }

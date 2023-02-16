@@ -114,8 +114,23 @@ async function getPhotos(event) {
     easing: "ease-out",
     fill: "forwards"
   }
-
   moons.forEach(element => element.animate(moonFade, moonTiming));
+
+  // Animate orbit lines - fade out
+  let orbits = document.querySelectorAll(".background-planet__moon-orbit");
+  let orbitFade = [
+    {opacity: 1},
+    {opacity: 0}
+  ];
+
+  let orbitTiming = {    
+    delay: 500,
+    duration: 200,
+    iterations: 1,
+    easing: "ease-out",
+    fill: "forwards"
+  }
+  orbits.forEach(element => element.animate(orbitFade, orbitTiming));
 
 
   // Animate globe - zoom in
