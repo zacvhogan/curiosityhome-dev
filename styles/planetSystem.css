@@ -10,9 +10,6 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
   margin-left: auto;
   margin-right: auto;
   transform-style: preserve-3d;
-  
-  
-
   transform: rotateZ(-25deg) rotateX(80deg) ;
   
 }
@@ -25,7 +22,7 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
   transform-style: preserve-3d;
   transform: rotateZ(0deg);  
   background-color: rgba(0, 0, 0, 0);
-  border: 0.2em solid rgb(107, 107, 107);
+  border: 0.2em solid rgba(107, 107, 107, 0.3);
   border-radius: 50%;
  
 
@@ -90,17 +87,19 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
 }
 
 .background-planet__globe{ 
-  display: block; 
-  
+  position: relative;
+  display: block;   
   height: 200px;
   width: 200px;   
   margin-left: auto;
   margin-right: auto;
+  top: 25%;
   
 
   transform-style: preserve-3d;  
-  transform: rotateX(-80deg);   
-  transform-origin: center center center;
+  transform: rotateX(-80deg) ;    
+  transform-origin: center;
+  
  
  
 }
@@ -128,13 +127,13 @@ and brightness changes to simulate moving into planet's shadow */
 }
 
 #terrain {
-  animation-name: animation;
+  animation-name: keys-planet-rotate;
   animation-duration: 48s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
 
-@keyframes animation {
+@keyframes keys-planet-rotate {
   from {transform: translate(0%, 0%);}  
   to {transform: translate(22.4%, 0px);}
 }
