@@ -53,9 +53,9 @@ async function pagePreload() {
 
 
   // Fetch  manifest
-  // manifest =  await fetch("https://api.nasa.gov/mars-photos/api/v1/manifests/Curiosity?api_key=" + API_KEY)
-  // .then(response => response.json())
-  // .then(data => data);
+  manifest =  await fetch("https://api.nasa.gov/mars-photos/api/v1/manifests/Curiosity?api_key=" + API_KEY)
+  .then(response => response.json())
+  .then(data => data);
 
   // console.log("Total photos since mission start: " + manifest.photo_manifest.total_photos);
   
@@ -63,8 +63,8 @@ async function pagePreload() {
   // Page setup 
   // Set date limits using manifest data
   datePicker.min =  "2012-08-06";
-  // datePicker.max = manifest.photo_manifest.max_date;
-  // manifestDate.innerHTML = manifest.photo_manifest.max_date;
+  datePicker.max = manifest.photo_manifest.max_date;
+  manifestDate.innerHTML = manifest.photo_manifest.max_date;
 
   // Show page  
   // Short delay to show logo for testing - remove this later
@@ -166,7 +166,7 @@ async function getPhotos(event) {
   
   // Fetch 
   // TODO: Update this for prod with fetchURL
-  let output = await fetch("./testJSON.json").then(response => response.json()).then(data => data);
+  let output = await fetch(fetchURL).then(response => response.json()).then(data => data);
  
 
   //TODO: if no data for this date, display message and early return  
