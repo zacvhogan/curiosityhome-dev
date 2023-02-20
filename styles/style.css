@@ -117,7 +117,7 @@ Further styling for planet animation in planetSystem.css */
 .background-planet {
   z-index: -100;
   position: absolute;
-  top: 10vh;;
+  top: 10vh;
   left: 0;
   padding-top: 10vh;  
   min-height: 100vh;
