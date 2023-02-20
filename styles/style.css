@@ -30,13 +30,16 @@ html {
 
 #app {
   /* Initial opacity 0 for fade in once rover manifest data fetched successfully */
-  opacity: 0;
+  opacity: 0;  
   display: grid;
   grid-template-areas:
   "nv nv nv nv nv nv nv nv nv nv nv nv"
   "hd hd hd hd hd hd hd hd hd hd hd hd"
   "bd bd bd bd bd bd bd bd bd bd bd bd"
   "ft ft ft ft ft ft ft ft ft ft ft ft";
+  /* background: rgb(5,4,20);
+  background: linear-gradient(0deg, rgba(5,4,20,1) 0%, rgba(16,9,34,1) 89%, rgba(59,39,112,1) 100%); */
+  background-color: rgb(5,4,20,1);
 }
 
 .nav {
@@ -51,7 +54,7 @@ html {
   padding: 1em;
   grid-area: hd;  
   text-align: center;
-  background-color: hsl(209, 48%, 28%);
+  background-color: rgb(59,39,112)
   
 }
 
@@ -73,10 +76,10 @@ h1 {
 }
 
 .date-form-container {
-  height: auto;;  
+  height: auto; 
   margin: 0;
   padding: 1.5em;  
-  background-color: rgb(40, 99, 117);
+  background-color: rgba(0,0,0,0);
   text-align: center;
 }
 
@@ -112,25 +115,59 @@ h1 {
 /* Container for background planet
 Further styling for planet animation in planetSystem.css */
 .background-planet {
-  z-index: -1;
+  z-index: -100;
+  position: absolute;
+  top: 10vh;;
+  left: 0;
   padding-top: 10vh;  
-  height: 100vh;
-  width: 100%;
+  min-height: 100vh;
+  width: 100vw;
   background-color: rgba(0 0 0 0);
-  overflow: hidden;   
+  overflow: visible;   
 }
 
 
 .results {
   z-index: 10;
-  background-color: silver;
+  background-color: rgba(248, 198, 132,0.5);
   width: 80%;
-  height: 80vh;
+  min-height: 80vh;
   margin-left: auto;
-  margin-right: auto;
-  margin-top: 10%;
+  margin-right: auto;  
   opacity: 0;
   padding: 1em;
+}
+
+.results > h2 {
+  font-size: 4em;
+}
+
+.results-list__thumbnail{
+  height: 100px;
+  width: 100px;
+}
+
+.results-list__camera{
+  border: 0.3em solid white;
+  margin: 1em;
+  list-style: none;
+  padding: 1em;  
+}
+
+.results-list__camera > h2 {
+  
+}
+
+.results-list__list-entry {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  margin-bottom: 0.6em;
+}
+
+.results-list__list-entry > button {
+  height: 3em;
+  width: 3em;
 }
 
 .modal-image {

@@ -1,4 +1,4 @@
-//// PLAN
+a//// PLAN
 
 // ON PAGE LOAD
 // Fetch Curiosity manifest data, get landing & max dates
@@ -53,18 +53,18 @@ async function pagePreload() {
 
 
   // Fetch  manifest
-  manifest =  await fetch("https://api.nasa.gov/mars-photos/api/v1/manifests/Curiosity?api_key=" + API_KEY)
-  .then(response => response.json())
-  .then(data => data);
+  // manifest =  await fetch("https://api.nasa.gov/mars-photos/api/v1/manifests/Curiosity?api_key=" + API_KEY)
+  // .then(response => response.json())
+  // .then(data => data);
 
-  console.log("Total photos since mission start: " + manifest.photo_manifest.total_photos);
+  // console.log("Total photos since mission start: " + manifest.photo_manifest.total_photos);
   
 
   // Page setup 
   // Set date limits using manifest data
   datePicker.min =  "2012-08-06";
-  datePicker.max = manifest.photo_manifest.max_date;
-  manifestDate.innerHTML = manifest.photo_manifest.max_date;
+  // datePicker.max = manifest.photo_manifest.max_date;
+  // manifestDate.innerHTML = manifest.photo_manifest.max_date;
 
   // Show page  
   // Short delay to show logo for testing - remove this later
@@ -100,6 +100,7 @@ async function getPhotos(event) {
   // TODO: clear previous results
 
   // Loading icon animate
+  
 
   // Animate moons - fade out
   let moons = document.querySelectorAll(".background-planet__moon");
@@ -134,6 +135,7 @@ async function getPhotos(event) {
 
 
   // Animate globe - zoom in
+  // Retain existing transform settings, because css transform: only allows one declaration per element
   let backgroundPlanet = document.querySelector(".background-planet__globe");
   let planetZoom = [
     {transform: "scale3d(1,1,1) rotateX(-80deg)"},
@@ -151,6 +153,9 @@ async function getPhotos(event) {
 
   backgroundPlanet.animate(planetZoom, planetTiming);
 
+
+
+
   
 
   // Build fetch URL
@@ -160,8 +165,9 @@ async function getPhotos(event) {
   let fetchURL = new URL(urlPrefix + date + urlSuffix + API_KEY);  
   
   // Fetch 
-  let output = await fetch(fetchURL).then(response => response.json()).then(data => data);
-  console.log(output);
+  // TODO: Update this for prod with fetchURL
+  let output = await fetch("./testJSON.json").then(response => response.json()).then(data => data);
+ 
 
   //TODO: if no data for this date, display message and early return  
   if (output.photos.length == 0){
@@ -169,67 +175,108 @@ async function getPhotos(event) {
     return  
   }
 
-  // Sort data
-  let photoArray = [];
-  let fhaz = [];
-  let rhaz = [];
-  let mast = [];
-  let chemcam = [];
-  let mahli = [];
-  let mardi = [];
-  let navcam = [];
+// Sort data into 2D array
+// Source data is currently ordered/grouped by camera
+// However including this step so that if data in future is unordered we have a tidy working set
+  let photoArray = [];   
 
   for(let i = 0; i < output.photos.length; i++)
   {
     let img = output.photos[i].img_src;
+    let id = output.photos[i].id;
     let camera = output.photos[i].camera.name;
-    photoArray.push({camera, img});
+    photoArray.push({camera, id, img});
   }
-  console.log(photoArray);
+  
+  let photosObjFull = {
+    "fhaz": {
+      "name": "Front Hazard Avoidance Camera",
+      "imgs": []
+    },
+    "rhaz": {
+      "name": "Rear Hazard Avoidance Camera",
+      "imgs": []
+    },
+    "mast": {
+      "name": "Mast Camera",
+      "imgs": []
+    },
+    "chemcam": {
+      "name": "Chemistry and Camera Complex",
+      "imgs": []
+    },
+    "mahli": {
+      "name": "Mars Hand Lens Imager",
+      "imgs": []
+    },
+    "mardi": {
+      "name": "Mars Descent Imager",
+      "imgs": []
+    },
+    "navcam": {
+      "name": "Navigation Camera",
+      "imgs": []
+    },
+    "unknown": {
+      "name": "Unknown Camera Source",
+      "imgs": []
+    },
+  };
 
   photoArray.forEach(element => {
 
     switch(element.camera) {
 
       case "FHAZ":
-        fhaz.push(element);
+        photosObjFull.fhaz.imgs.push(element);
         break;
 
       case "RHAZ":
-        rhaz.push(element);
+        photosObjFull.rhaz.imgs.push(element);
         break;
 
       case "MAST":
-        mast.push(element);
+        photosObjFull.mast.imgs.push(element);
         break;
 
       case "CHEMCAM":
-        chemcam.push(element);
+        photosObjFull.chemcam.imgs.push(element);
         break;
 
       case "MAHLI":
-        mahli.push(element);
+        photosObjFull.mahli.imgs.push(element);
         break;
 
       case "MARDI":
-        mardi.push(element);
+        photosObjFull.mardi.imgs.push(element);
         break;
 
       case "NAVCAM":
-        navcam.push(element);
+        photosObjFull.navcam.imgs.push(element);
         break;
+      
+      default:
+        photosObjFull.unknown.imgs.push(element);
     }    
   });
 
-  let allPhotos = [fhaz, rhaz, mast, chemcam, mahli, mardi, navcam];
-  console.log(allPhotos);
+  // Create final photos Object to be sent for rendering
+  // Weeded of all camera entries that have 0 photos
+  let photosObjFinal = {};
 
-  displayPhotoList(allPhotos);
+  for (const key in photosObjFull){   
+    if (photosObjFull[key]["imgs"].length != 0){
+      photosObjFinal[key] = photosObjFull[key]
+    }     
+  }   
+  displayPhotoList(photosObjFinal);
 }
 
 
 
-function displayPhotoList(photoArray) {
+
+
+function displayPhotoList(photosObj) {
 
   // Fetch camera types recorded for today (look up on manifest with date converted to sols)
   // Build new array for each camera type    
@@ -238,32 +285,82 @@ function displayPhotoList(photoArray) {
   // Format each camera array into accordian style display
   
   // TODO: Scrap the above.
-  // In previous function generate an array of objects 
- 
-  
+  // In previous function generate an array of objects   
+  console.log(photosObj);
+
 
   let resultView = document.querySelector(".results");
-  let list = document.createElement('ul');
-  
-  
-  photoArray.forEach((value, index) => {  
+  let fullList = document.createElement('ul');
 
-    let listData = document.createElement('span');
-    let modalButton = document.createElement('button');
+  for (const key in photosObj){    
 
-
-    listData.innerHTML = `
-    ${value.camera} - <a href=${value.img} target="_blank">${index}</a>
+    // Generate one nested list for each camera
+    let subList = document.createElement('ul');
+    let cameraName = photosObj[key].name;
+    subList.innerHTML = `
+      <h2>${cameraName}</h2>
     `;
+    subList.classList.add("results-list__camera")
 
-    let listEntry = document.createElement('li');
-    listEntry.appendChild(listData);
-    list.appendChild(listEntry);
+    // Iterate over each camera's imgs array, and append to that camera's sublist
+
+    photosObj[key].imgs.forEach(element => {
+      let listEntry = document.createElement('li');
+      listEntry.classList.add("results-list__list-entry");
+      listEntry.innerHTML = `
+
+        <a href=${element.img} target="_blank"><img src=${element.img} class="results-list__thumbnail" ></a> ID: ${element.id} <button><i class="fa-solid fa-maximize"></i></button> <button><i class="fa-solid fa-link"></i></button>
+      
+      `;
+      subList.appendChild(listEntry);
+
+    });
+
+
+
+
+
+
+
+    fullList.appendChild(subList);
+
     
-  });
+    // generate list for each camera
+    // append list entries to fullList
 
-  resultView.appendChild(list);
-  resultView.style.opacity = 1;
+  }
+  
+  
+
+
+
+
+
+
+
+// Render to DOM
+  resultView.appendChild(fullList);
+  // TODO: Fade opacity instead
+
+  // Animate results - fade in
+  let resultsFade= [
+    {opacity: 0},
+    {opacity: 1}
+    
+  ];
+
+  let resultsFadeTiming= {
+    delay: 1500,
+    duration: 500,
+    iterations: 1,
+    easing: "ease-in",
+    fill: "forwards"
+  }
+
+  resultView.animate(resultsFade, resultsFadeTiming);
+
+
+
 
 }
 
