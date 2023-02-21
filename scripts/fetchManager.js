@@ -1,4 +1,4 @@
-a//// PLAN
+//// PLAN
 
 // ON PAGE LOAD
 // Fetch Curiosity manifest data, get landing & max dates
