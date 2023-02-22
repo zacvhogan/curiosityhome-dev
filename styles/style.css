@@ -8,6 +8,7 @@ html {
   color: rgb(238, 247, 255); 
 }
 
+
 #preload { 
   position: absolute;
   display: flex;
@@ -26,20 +27,18 @@ html {
   margin-right: auto;  
 }
 
-
-
 #app {
   /* Initial opacity 0 for fade in once rover manifest data fetched successfully */
   opacity: 0;  
   display: grid;
+  grid-template-rows: min-content;
   grid-template-areas:
-  "nv nv nv nv nv nv nv nv nv nv nv nv"
+  /* "nv nv nv nv nv nv nv nv nv nv nv nv"  */
   "hd hd hd hd hd hd hd hd hd hd hd hd"
   "bd bd bd bd bd bd bd bd bd bd bd bd"
-  "ft ft ft ft ft ft ft ft ft ft ft ft";
-  /* background: rgb(5,4,20);
-  background: linear-gradient(0deg, rgba(5,4,20,1) 0%, rgba(16,9,34,1) 89%, rgba(59,39,112,1) 100%); */
-  background-color: rgb(5,4,20,1);
+  "ft ft ft ft ft ft ft ft ft ft ft ft"; 
+  background: rgb(5,4,20);  
+  min-height: 100vh;
 }
 
 .nav {
@@ -47,6 +46,7 @@ html {
   height: 50px;
   width: 100%;
   background-color: rgb(44, 51, 155);
+  display: none;
 
 }
 
@@ -54,13 +54,19 @@ html {
   padding: 1em;
   grid-area: hd;  
   text-align: center;
-  background-color: rgb(59,39,112)
+  background-color: rgb(59,39,112);
+  height: auto;
   
 }
 
 .footer {
   grid-area: ft;
-  background-color: pink;
+  display: block;
+  width: 100vw;
+  background-color: rgb(56, 99, 119);
+  height: 3em;
+ 
+  
 }
 
 h1 {  
@@ -73,6 +79,7 @@ h1 {
 .main {
   grid-area: bd;
   position: relative;
+  
 }
 
 .date-form-container {
@@ -132,7 +139,7 @@ Further styling for planet animation in planetSystem.css */
   z-index: 10;
   background-color: rgba(248, 198, 132,0.5);
   width: 80%;
-  min-height: 80vh;
+  height: auto;
   margin-left: auto;
   margin-right: auto;  
   opacity: 0;
