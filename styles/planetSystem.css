@@ -85,7 +85,7 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
   animation-duration: 60.62s; 
 }
 
-.background-planet__globe{ 
+.background-planet__globe-container{ 
   position: relative;
   display: block;   
   height: 150px;
@@ -106,15 +106,20 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
   animation-iteration-count: infinite;
 }
 
-background-planet__terrain-base {
-  background-color: red;
-  height: 100%;
-  width: 100%;
-}
 
-.background-planet__globe > img {
+
+.background-planet__globe > img {  
+  position: absolute;
   height: 100%;
   width: 100%;    
+}
+
+/* TODO: fix position of atmos */
+
+.background-planet__atmos {
+  position: absolute;
+  z-index: -11;
+  
 }
 
 

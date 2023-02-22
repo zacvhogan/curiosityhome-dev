@@ -115,7 +115,7 @@ h1 {
 /* Container for background planet
 Further styling for planet animation in planetSystem.css */
 .background-planet {
-  z-index: -100;
+  z-index: -10;
   height: auto;
   position: absolute;
   top: 50%;

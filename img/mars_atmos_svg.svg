@@ -2,12 +2,12 @@
 <svg
    class="background-planet__globe"
    xml:space="preserve"
-   width="6671.2095"
-   height="2060.9673"
-   viewBox="0 0 1765.0899 545.29732"
+   width="2495.6873"
+   height="2681.6389"
+   viewBox="0 0 660.3169 709.51661"
    version="1.1"
    id="svg46"
-   sodipodi:docname="mars_1.svg"
+   sodipodi:docname="mars_atmos_svg.svg"
    inkscape:version="1.2.2 (732a01da63, 2022-12-09, custom)"
    inkscape:export-filename="../9d3c53cf/mars_terrain.png"
    inkscape:export-xdpi="96"
@@ -27,10 +27,10 @@
    inkscape:deskcolor="#d1d1d1"
    showgrid="false"
    inkscape:zoom="0.2054"
-   inkscape:cx="4303.7976"
-   inkscape:cy="856.86467"
+   inkscape:cx="949.36709"
+   inkscape:cy="1127.0691"
    inkscape:window-width="2560"
-   inkscape:window-height="1203"
+   inkscape:window-height="1306"
    inkscape:window-x="0"
    inkscape:window-y="0"
    inkscape:window-maximized="1"
@@ -137,26 +137,26 @@
      gradientTransform="matrix(-0.56,0.263,-0.491,-1.047,238.82,243.608)"
      gradientUnits="userSpaceOnUse" /></defs>
                       <rect
-   style="fill:#7c3100;fill-opacity:1;stroke-width:5.34958;-inkscape-stroke:none;stop-color:#000000"
+   style="display:none;fill:#7c3100;fill-opacity:1;stroke-width:5.34958;-inkscape-stroke:none;stop-color:#000000"
    id="rect1009"
    width="1773.6849"
    height="545.41412"
-   x="-2.2720113"
-   y="0.81803554" /><circle
+   x="-885.43292"
+   y="72.131866" /><circle
    cx="109.023"
    cy="132.44099"
    r="48.730999"
    fill="url(#d)"
    filter="url(#e)"
-   transform="matrix(5.49,0,0,5.49,614.78308,-443.65659)"
+   transform="matrix(5.49,0,0,5.49,-268.37783,-372.34276)"
    id="circle33"
-   style="display:none;fill:url(#d)" />
+   style="display:inline;fill:url(#d)" />
                       <g
    fill="url(#f)"
    clip-path="none"
-   transform="matrix(6.0391689,0,0,6.2266666,555.76756,-539.48741)"
+   transform="matrix(6.0391689,0,0,6.2266666,-327.39335,-468.17358)"
    id="g44"
-   style="fill:#e87e39;fill-opacity:1">
+   style="display:none;fill:#e87e39;fill-opacity:1">
                         <circle
    cx="110.671"
    cy="129.39301"
@@ -166,7 +166,7 @@
    style="display:none;fill:#e87e39;fill-opacity:1" />
                         <g
    id="terrain"
-   style="display:inline;fill:#e87e39;fill-opacity:1">
+   style="display:none;fill:#e87e39;fill-opacity:1">
                           
                       <g
    id="path356"
@@ -214,8 +214,8 @@
    id="ellipse42"
    style="display:none;fill:#e87e39;fill-opacity:1" />
                       </g><circle
-   cx="1213.3981"
-   cy="284.75644"
+   cx="330.23715"
+   cy="356.07028"
    r="261.138"
    fill="#a05a2c"
    stroke-width="1.59"
