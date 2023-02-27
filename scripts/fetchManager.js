@@ -37,6 +37,9 @@ let datePicker = document.querySelector("#date-form__date");
 let form = document.querySelector("#date-form");
 let date;
 
+// Get results DOM element for content insertion
+let resultView = document.querySelector(".results");
+
 // Logic for submit button, fetches and displays data/images
 let submitButton = document.querySelector("#date-form__submit");
 submitButton.addEventListener("click", (event) => (getPhotos(event)));
@@ -97,9 +100,7 @@ async function getPhotos(event) {
     return;
   } 
 
-  // TODO: clear previous results
-
-  // Loading icon animate
+   // Loading icon animate
   
 
   // Animate moons - fade out
@@ -277,28 +278,28 @@ async function getPhotos(event) {
 
 
 function displayPhotoList(photosObj) {
+ 
+  while (resultView.firstChild){
+    resultView.removeChild(resultView.firstChild);
+  }
+  // Create full list UL element
+  let fullList = document.createElement('ul');  
 
-  // Fetch camera types recorded for today (look up on manifest with date converted to sols)
-  // Build new array for each camera type    
-  // Sort each photo into appropriate camera array
-  // Build list display entry for each photo - "Image # [Button: view] [Button: copy link]"
-  // Format each camera array into accordian style display
-  
-  // TODO: Scrap the above.
-  // In previous function generate an array of objects   
-  console.log(photosObj);
+  // Set results header to include selected date
+  let resultHeader = document.createElement('h3');
+  resultHeader.innerHTML = `
+    Photos taken on ${date}
+  `;
+  resultView.appendChild(resultHeader)
 
-
-  let resultView = document.querySelector(".results");
-  let fullList = document.createElement('ul');
-
+  // For each photo/metadata object in displayPhotoList, do stuff
   for (const key in photosObj){    
 
     // Generate one nested list for each camera
     let subList = document.createElement('ul');
     let cameraName = photosObj[key].name;
     subList.innerHTML = `
-      <h2>${cameraName}</h2>
+      <h3>${cameraName}</h3>
     `;
     subList.classList.add("results-list__camera")
 
@@ -315,28 +316,8 @@ function displayPhotoList(photosObj) {
       subList.appendChild(listEntry);
 
     });
-
-
-
-
-
-
-
-    fullList.appendChild(subList);
-
-    
-    // generate list for each camera
-    // append list entries to fullList
-
+    fullList.appendChild(subList);     
   }
-  
-  
-
-
-
-
-
-
 
 // Render to DOM
   resultView.appendChild(fullList);
