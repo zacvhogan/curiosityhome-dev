@@ -25,7 +25,7 @@ setInterval(animateStars, 50);
 function generateStars(numStars) {
 
   for (let i = 0; i < numStars; i++) {
-  	
+
     let x = Math.random() * winWidth;
     let y = Math.random() * winHeight;
     let size = Math.random() * 2.5;
@@ -39,21 +39,27 @@ function generateStars(numStars) {
 console.log(starsArray[0][3]);
 
 
+
+
 function renderStars(starsArray) {
+
+
 
   // Clear previous frame
   context.clearRect(0, 0, winWidth, winHeight);
 
 
+ 
   starsArray.forEach(element => {
     context.fillStyle = element[3];
-    let dimChance = Math.random() * 100;
+    let dimChance = Math.random() * 100;    
     if (dimChance < 1) {
       context.fillStyle = "grey";
     }
     context.fillRect(element[0], element[1], element[2], element[2]);
   });
 }
+
 
 function animateStars() {
 
@@ -65,6 +71,12 @@ function animateStars() {
 
     if (element[0] < 0) {
       element[0] = winWidth;
+    element[0] = element[0] - 0.5;
+    element[1] = element[1] + 0.1;
+    }
+
+    if (element[0] < 0) {
+      element[0] = winWidth;
     }
     if (element[1] > winHeight) {
       element[1] = 0;
@@ -73,6 +85,7 @@ function animateStars() {
 
   // Render
   renderStars(starsArray);
-
-
 }
+
+
+
