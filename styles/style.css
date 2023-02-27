@@ -38,8 +38,10 @@ html {
   "bd bd bd bd bd bd bd bd bd bd bd bd"
   "ft ft ft ft ft ft ft ft ft ft ft ft"; 
   background: rgb(5,4,20);
-  background: linear-gradient(0deg, rgba(5,4,20,1) 0%, rgba(16,9,34,1) 80%, rgba(59,39,112,1) 100%); 
+  background: linear-gradient(0deg, rgba(5,4,10,1) 0%, rgba(5,4,10,1) 80%, rgba(59,39,112,1) 100%); 
   height: 100vh;
+  width: 100vw;  
+  overflow: hidden;
 }
 
 .nav {
@@ -54,14 +56,14 @@ html {
   padding: 1em;
   grid-area: hd;  
   text-align: center;
-  background-color: rgba(0 0 0 0));
+  background-color: rgba(0 0 0 0);
   height: auto;  
 }
 
 .main {
   grid-area: bd;
-  position: relative;  
-  overflow-y: scroll;
+  position: relative;    
+  height: 100%;
 }
 
 .footer {
@@ -70,6 +72,7 @@ html {
   width: 100vw;
   background-color: rgb(56, 99, 119);
   height: auto;  
+  display: none;
 }
 
 h1 {  
@@ -126,8 +129,7 @@ Further styling for planet animation in planetSystem.css */
   left: 0;
   padding-top: 10vh;  
   width: 100vw;
-  background-color: rgba(0 0 0 0);
-  overflow: visible;  
+  background-color: rgba(0 0 0 0);    
   transform: translate(0, -50%);
 }
 
@@ -187,7 +189,16 @@ Further styling for planet animation in planetSystem.css */
 
 .background-starfield {
   position: absolute;
-  z-index: -10;
+  
+  
+}
+
+.background-starfield__container {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: -10;  
+  overflow: hidden;
 }
 
 
