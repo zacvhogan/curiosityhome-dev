@@ -137,11 +137,10 @@ async function getPhotos(event) {
 
   // Animate globe - zoom in
   // Retain existing transform settings, because css transform: only allows one declaration per element
-  let backgroundPlanet = document.querySelector(".background-planet__globe");
+  let backgroundPlanet = document.querySelector(".background-planet__globe-container");
   let planetZoom = [
     {transform: "scale3d(1,1,1) rotateX(-80deg)"},
-    {transform: "scale3d(10,10,10) rotateX(-80deg)"}
-    
+    {transform: "scale3d(10,10,10) rotateX(-80deg)"}    
   ];
 
   let planetTiming = {

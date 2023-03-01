@@ -55,8 +55,10 @@ function renderStars(starsArray) {
     let dimChance = Math.random() * 100;    
     if (dimChance < 1) {
       context.fillStyle = "grey";
-    }
+    }   
+    
     context.fillRect(element[0], element[1], element[2], element[2]);
+
   });
 }
 
