@@ -96,10 +96,9 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
   border-radius: 50%;
   transform-style: preserve-3d;  
   transform: rotateX(-80deg) ;    
-  transform-origin: center;
+  transform-origin: 100% center;
   background-image: url("../img/mars_terrain.png");
   background-size: auto 100%;
-
   animation-name: keys-planet-rotate;
   animation-duration: 48s;
   animation-timing-function: linear;

@@ -3,6 +3,10 @@
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
+button:focus {
+  outline: none;
+}
+
 html {
   background-color: rgb(5, 12, 17); 
   color: rgb(238, 247, 255); 
@@ -136,12 +140,12 @@ h1 {
 }
 
 /* Styling for date-time picker, convert from input field to clickable button */
-::-webkit-datetime-edit { display: none}}
-::-webkit-datetime-edit-fields-wrapper { display: none} }
-::-webkit-datetime-edit-text { display: none} }
+::-webkit-datetime-edit { display: none}
+::-webkit-datetime-edit-fields-wrapper { display: none} 
+::-webkit-datetime-edit-text { display: none} 
 ::-webkit-datetime-edit-month-field { display: none}
-::-webkit-datetime-edit-day-field { display: none} }
-::-webkit-datetime-edit-year-field { display: none} }
+::-webkit-datetime-edit-day-field { display: none} 
+::-webkit-datetime-edit-year-field { display: none} 
 ::-webkit-inner-spin-button {  }
 ::-webkit-calendar-picker-indicator { height: 90%; width: 90%; transform:rotate(-45deg);}
 

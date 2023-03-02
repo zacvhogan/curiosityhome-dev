@@ -26,8 +26,6 @@
 // Set global variables
 
 // TODO: THIS API KEY SHOULD NOT BE EXPOSED
-// Not a HUGE risk as anyone can get a key and so there's little reason for anybody to find and abuse this
-// But still an issue, and obviously not something I'd do in a real world scenario
 const API_KEY = "fKE7SyalORoMRuiAsYzfftcTvhKDg0EeJqo4lMdm";
 
 let app = document.querySelector("#app");
@@ -47,6 +45,13 @@ submitButton.addEventListener("click", (event) => (getPhotos(event)));
 
 // Fetch photo manifest, animate page load
 pagePreload();
+
+
+
+
+
+
+
 
 async function pagePreload() {  
 
@@ -85,9 +90,14 @@ async function pagePreload() {
     ],
     {duration: 500, fill: "forwards"});
   },0)
-  
+}
+
+
+function animateToStateInitial() {
 
 }
+
+
 
 
 
@@ -100,62 +110,8 @@ async function getPhotos(event) {
     return;
   } 
 
-   // Loading icon animate
-  
-
-  // Animate moons - fade out
-  let moons = document.querySelectorAll(".background-planet__moon");
-  let moonFade = [
-    {opacity: 1},
-    {opacity: 0}
-  ];
-
-  let moonTiming = {
-    duration: 600,
-    iterations: 1,
-    easing: "ease-out",
-    fill: "forwards"
-  }
-  moons.forEach(element => element.animate(moonFade, moonTiming));
-
-  // Animate orbit lines - fade out
-  let orbits = document.querySelectorAll(".background-planet__moon-orbit");
-  let orbitFade = [
-    {opacity: 1},
-    {opacity: 0}
-  ];
-
-  let orbitTiming = {    
-    delay: 500,
-    duration: 200,
-    iterations: 1,
-    easing: "ease-out",
-    fill: "forwards"
-  }
-  orbits.forEach(element => element.animate(orbitFade, orbitTiming));
-
-
-  // Animate globe - zoom in
-  // Retain existing transform settings, because css transform: only allows one declaration per element
-  let backgroundPlanet = document.querySelector(".background-planet__globe-container");
-  let planetZoom = [
-    {transform: "scale3d(1,1,1) rotateX(-80deg)"},
-    {transform: "scale3d(10,10,10) rotateX(-80deg)"}    
-  ];
-
-  let planetTiming = {
-    delay: 1000,
-    duration: 3000,
-    iterations: 1,
-    easing: "ease",
-    fill: "forwards"
-  }
-
-  backgroundPlanet.animate(planetZoom, planetTiming);
-
-
-
-
+  // Begin animate form, background while results are fetched and processed
+  animateToStateViewResults();
   
 
   // Build fetch URL
@@ -164,20 +120,20 @@ async function getPhotos(event) {
   let urlSuffix = "&api_key=";
   let fetchURL = new URL(urlPrefix + date + urlSuffix + API_KEY);  
   
-  // Fetch 
-  // TODO: Update this for prod with fetchURL
+  // Fetch data  
   let output = await fetch(fetchURL).then(response => response.json()).then(data => data);
  
 
   //TODO: if no data for this date, display message and early return  
+  //TODO: handle reponse error codes
   if (output.photos.length == 0){
     console.log("No data for this date");
     return  
   }
 
 // Sort data into 2D array
-// Source data is currently ordered/grouped by camera
-// However including this step so that if data in future is unordered we have a tidy working set
+//   Source data is currently ordered/grouped by camera
+//   However including this step so that if data in future is unordered we have a tidy working set
   let photoArray = [];   
 
   for(let i = 0; i < output.photos.length; i++)
@@ -261,7 +217,7 @@ async function getPhotos(event) {
   });
 
   // Create final photos Object to be sent for rendering
-  // Weeded of all camera entries that have 0 photos
+  //   Weed of all camera entries that have 0 photos
   let photosObjFinal = {};
 
   for (const key in photosObjFull){   
@@ -269,18 +225,19 @@ async function getPhotos(event) {
       photosObjFinal[key] = photosObjFull[key]
     }     
   }   
+
+  // Begin render of results
   displayPhotoList(photosObjFinal);
 }
 
 
- // Test
-
-
 function displayPhotoList(photosObj) {
- 
+
+  // Clear previous results from DOM. While firstChild exists, remove firstChild
   while (resultView.firstChild){
     resultView.removeChild(resultView.firstChild);
   }
+
   // Create full list UL element
   let fullList = document.createElement('ul');  
 
@@ -338,10 +295,6 @@ function displayPhotoList(photosObj) {
   }
 
   resultView.animate(resultsFade, resultsFadeTiming);
-
-
-
-
 }
 
 
@@ -358,4 +311,75 @@ function getCameraList() {
   let cameraArray = manifest.photo_manifest.photos[todayManifestIndex].cameras; 
 
   return cameraArray;
+}
+
+
+
+function animateToStateViewResults() {
+
+    // Fade out date and search buttons
+    let formButtons = document.querySelectorAll(".date-form__button");
+    let formButtonsFade = [
+      {opacity: 1},
+      {opacity: 0}
+    ];
+    let formButtonsFadeTiming = {
+      duration: 600,
+      iterations: 1,
+      easing: "ease-out",
+      fill: "forwards"
+    }
+
+    formButtons.forEach(element => {element.animate(formButtonsFade, formButtonsFadeTiming)});
+
+
+
+    // Animate moons - fade out
+    let moons = document.querySelectorAll(".background-planet__moon");
+    let moonFade = [
+      {opacity: 1},
+      {opacity: 0}
+    ];
+
+    let moonTiming = {
+      duration: 600,
+      iterations: 1,
+      easing: "ease-out",
+      fill: "forwards"
+    }
+    moons.forEach(element => element.animate(moonFade, moonTiming));
+  
+    // Animate orbit lines - fade out
+    let orbits = document.querySelectorAll(".background-planet__moon-orbit");
+    let orbitFade = [
+      {opacity: 1},
+      {opacity: 0}
+    ];
+  
+    let orbitTiming = {    
+      delay: 500,
+      duration: 200,
+      iterations: 1,
+      easing: "ease-out",
+      fill: "forwards"
+    }
+    orbits.forEach(element => element.animate(orbitFade, orbitTiming));
+  
+  
+    // Animate globe - zoom in
+    // Retain existing transform settings, because css transform: only allows one declaration per element
+    let backgroundPlanet = document.querySelector(".background-planet__globe-container");
+    let planetZoom = [
+      {transform: "scale3d(1,1,1) rotateX(-80deg)"},
+      {transform: "scale3d(18,18,18) rotateX(-80deg) rotateZ(-70deg)"}    
+    ];
+  
+    let planetTiming = {
+      delay: 1000,
+      duration: 3000,
+      iterations: 1,
+      easing: "ease",
+      fill: "forwards"
+    }  
+    backgroundPlanet.animate(planetZoom, planetTiming);
 }

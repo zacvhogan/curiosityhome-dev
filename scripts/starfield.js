@@ -14,7 +14,7 @@ canvas.height = winHeight;
 canvas.width = winWidth;
 
 
-let numStars = Math.round((winHeight * winWidth) / 400);
+let numStars = Math.round((winHeight * winWidth) / 4000);
 let starsArray = [];
 
 generateStars(numStars);
@@ -26,14 +26,15 @@ function generateStars(numStars) {
 
   for (let i = 0; i < numStars; i++) {
 
+    let maxSize = 8;
     let x = Math.random() * winWidth;
     let y = Math.random() * winHeight;
-    let size = Math.random() * 2.5;
-    let color = `hsl(${Math.round(Math.random() * (340 - 180) + 180)} 100% 80%)`;
+    let size = Math.random() * maxSize;
+    let color = `hsl(${Math.round(Math.random() * (340 - 180) + 180)} 100% 85%)`;
     //console.log(color);
 
 
-    starsArray.push([x, y, size, color]);
+    starsArray.push([x, y, size, color, maxSize]);
   }
 }
 console.log(starsArray[0][3]);
@@ -52,12 +53,25 @@ function renderStars(starsArray) {
  
   starsArray.forEach(element => {
     context.fillStyle = element[3];
+    let x = element[0];
+    let y = element[1];
+    let size = element[2];
+    let maxSize = element[4];
+
     let dimChance = Math.random() * 100;    
-    if (dimChance < 1) {
-      context.fillStyle = "grey";
+    if (dimChance < 050 && size < maxSize * 0.2) {
+      context.fillStyle = "white";
     }   
     
-    context.fillRect(element[0], element[1], element[2], element[2]);
+
+    context.beginPath();
+    context.arc(x - size, y - size, size, 0, 0.5 * Math.PI);
+    context.arc(x - size, y + size, size, 1.5 * Math.PI, 2 * Math.PI);
+    context.arc(x + size, y + size, size, 1 * Math.PI, 1.5 * Math.PI);
+    context.arc(x + size, y - size, size, 0.5 * Math.PI, 1 * Math.PI);   
+    context.fill();
+    
+    //context.fillRect(element[0], element[1], element[2], element[2]);
 
   });
 }
