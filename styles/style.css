@@ -1,6 +1,7 @@
 * {
   margin: 0;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
 }
 
 button:focus {
@@ -13,13 +14,15 @@ html {
 }
 
 
+
+
 #preload { 
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;    
+  height: 100%;
+  width: 100%    
 }
 
 .preload__icon {
@@ -45,11 +48,12 @@ html {
   background: linear-gradient(0deg, rgba(5,4,10,1) 0%, rgba(5,4,10,1) 80%, rgba(59,39,112,1) 100%); 
   height: 100vh;
   width: 100vw;  
-  overflow: scroll;
+  /* overflow-y: scroll; */
+  z-index: 10;
+  
 }
 
-.nav {
-  padding: 0.5em;
+.nav {  
   grid-area: nv;
   height: auto;
   width: 100%;
@@ -57,25 +61,26 @@ html {
   
 }
 
-.header {
-  padding: 1em;
+.header {  
   grid-area: hd;  
   text-align: center;
   background-color: rgba(0 0 0 0);
-  height: auto;  
-  
+  height: auto;    
+  width: 100%;
+  padding: 2em;
 }
 
 .main {
   grid-area: bd;
   position: relative;    
   height: 100%;
+  width: 100%;
 }
 
 .footer {
   grid-area: ft;
   display: block;
-  width: 100vw;
+  width: 100%;
   background-color: rgb(56, 99, 119);
   height: auto;  
   display: none;
@@ -91,9 +96,9 @@ h1 {
 
 
 .date-form-container {
-  height: auto; 
-  margin: 0;
-  padding: 1.5em;  
+  height: auto;
+  width: 100%; 
+  margin: 0;   
   background-color: rgba(0,0,0,0);
   text-align: center;
   display: flex;
@@ -160,7 +165,7 @@ Further styling for planet animation in planetSystem.css */
   top: 50%;
   left: 0;
   padding-top: 10vh;  
-  width: 100vw;
+  width: 100%;
   background-color: rgba(0 0 0 0);    
   transform: translate(0, -50%);
 }
@@ -220,7 +225,7 @@ Further styling for planet animation in planetSystem.css */
 }
 
 .background-starfield {
-  position: absolute;
+  position: absolute; 
   
   
 }
@@ -228,7 +233,7 @@ Further styling for planet animation in planetSystem.css */
 .background-starfield__container {
   position: absolute;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   z-index: -10;  
   overflow: hidden;  
 }
