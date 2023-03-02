@@ -72,7 +72,7 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
 /* Inner moon (Phobos) */
 .background-planet__moon-1{  
   position: relative;
-  top: -18px;
+  top: 94%;
   height: 15%;
   width: 15%;
   animation-duration: 15.32s; 
