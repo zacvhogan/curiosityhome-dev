@@ -22,7 +22,7 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
   transform-style: preserve-3d;
   transform: rotateZ(0deg);  
   background-color: rgba(0, 0, 0, 0);
-  border: 0.2em solid rgba(107, 107, 107, 0.3);
+  border: 0.3em solid rgba(224, 224, 224, 0.5);
   border-radius: 50%;
  
 
@@ -31,7 +31,7 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
   animation-timing-function: linear;
 }
 
-.background-planet__moon-orbit-1{
+.background-planet__moon-orbit-1{  
   height: 70%;
   width: 70%;
   margin-left: 15%;
@@ -71,6 +71,8 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
 /* NOTE moon sizes scale based on orbital radius (h/w of parent orbit div). Compensate for this */
 /* Inner moon (Phobos) */
 .background-planet__moon-1{  
+  position: relative;
+  top: -18px;
   height: 15%;
   width: 15%;
   animation-duration: 15.32s; 
@@ -78,10 +80,10 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
 
 /* Outer moon (Deimos) */
 .background-planet__moon-2{
+  position: relative;
+  top: 97%;
   height: 7%;
-  width: 7%;
-  
-  top: 100%;
+  width: 7%;    
   animation-duration: 60.62s; 
 }
 
