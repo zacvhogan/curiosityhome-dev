@@ -44,8 +44,7 @@ html {
   "hd hd hd hd hd hd hd hd hd hd hd hd"
   "bd bd bd bd bd bd bd bd bd bd bd bd"
   "ft ft ft ft ft ft ft ft ft ft ft ft"; 
-  background: rgb(5,4,20);
-  background: linear-gradient(0deg, rgba(5,4,10,1) 0%, rgba(5,4,10,1) 80%, rgba(59,39,112,1) 100%); 
+  background: rgb(5,4,10);  
   height: 100vh;
   width: 100vw;  
   /* overflow-y: scroll; */
@@ -131,6 +130,7 @@ h1 {
   transition: 0.3s;
 }
 
+
 .date-form__button:hover {
   background-color: rgb(216, 216, 255);
 }
@@ -151,8 +151,8 @@ h1 {
 ::-webkit-datetime-edit-month-field { display: none}
 ::-webkit-datetime-edit-day-field { display: none} 
 ::-webkit-datetime-edit-year-field { display: none} 
-::-webkit-inner-spin-button {  }
-::-webkit-calendar-picker-indicator { height: 90%; width: 90%; transform:rotate(-45deg);}
+::-webkit-inner-spin-button { display: none; }
+::-webkit-calendar-picker-indicator {opacity: 0;}
 
 
 
