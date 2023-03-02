@@ -30,7 +30,7 @@ function generateStars(numStars) {
     let x = Math.random() * winWidth;
     let y = Math.random() * winHeight;
     let size = Math.random() * maxSize;
-    let color = `hsl(${Math.round(Math.random() * (340 - 180) + 180)} 100% 85%)`;
+    let color = `hsl(${Math.round(Math.random() * (340 - 180) + 180)} 25% 40%)`;
     //console.log(color);
 
 
@@ -59,7 +59,7 @@ function renderStars(starsArray) {
     let maxSize = element[4];
 
     let dimChance = Math.random() * 100;    
-    if (dimChance < 050 && size < maxSize * 0.2) {
+    if (dimChance < 0.2 && size < maxSize * 0.2) {
       context.fillStyle = "white";
     }   
     
