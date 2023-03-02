@@ -116,8 +116,8 @@ h1 {
 
 .date-form__button {
   margin: 0em 1em 0em 1em;    
-  padding: 0.2em;
-  border: 3px solid rgb(240, 178, 219);  
+  padding: 2em;
+  /* border: 3px solid rgb(240, 178, 219);   */
   box-sizing: border-box;
   background-color: white;
   font-size: 1rem;
@@ -126,33 +126,38 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: rotate(45deg);
+  /* transform: rotate(45deg); */
   transition: 0.3s;
+  clip-path: polygon(0% 50%, 50% 0%, 100% 50%, 50% 100%);
 }
 
+#date-form__date {
+  clip-path: polygon(0% 50%, 20% 0%, 80% 0%, 100% 50%, 80% 100%, 20% 100%);
+  box-sizing: border-box;
+  width: 165px;
+  
+  padding: 2em;
+}
 
 .date-form__button:hover {
   background-color: rgb(216, 216, 255);
 }
 
-.date-form__button > i {
-  transform: rotate(-45deg);
-  font-size: 1.5rem;
-}
+
 
 #date-form__reset {
   display: none;
 }
 
 /* Styling for date-time picker, convert from input field to clickable button */
-::-webkit-datetime-edit { display: none}
+/* ::-webkit-datetime-edit { display: none}
 ::-webkit-datetime-edit-fields-wrapper { display: none} 
 ::-webkit-datetime-edit-text { display: none} 
 ::-webkit-datetime-edit-month-field { display: none}
 ::-webkit-datetime-edit-day-field { display: none} 
 ::-webkit-datetime-edit-year-field { display: none} 
 ::-webkit-inner-spin-button { display: none; }
-::-webkit-calendar-picker-indicator {opacity: 0;}
+::-webkit-calendar-picker-indicator {opacity: 0;} */
 
 
 
