@@ -49,15 +49,8 @@ pagePreload();
 
 
 
-
-
-
 async function pagePreload() {  
-
   let manifestDate = document.querySelector("#manifest-date");
-
-  // TODO: Show loading anim
-
 
   // Fetch  manifest
   manifest =  await fetch("https://api.nasa.gov/mars-photos/api/v1/manifests/Curiosity?api_key=" + API_KEY)
@@ -66,7 +59,6 @@ async function pagePreload() {
 
   // console.log("Total photos since mission start: " + manifest.photo_manifest.total_photos);
   
-
   // Page setup 
   // Set date limits using manifest data
   datePicker.min =  "2012-08-06";
@@ -91,11 +83,8 @@ async function pagePreload() {
   },0)
 }
 
-
 function animateToStateInitial() {
-
 }
-
 
 
 
@@ -135,7 +124,6 @@ async function getPhotos(event) {
 //   Source data is currently ordered/grouped by camera
 //   However including this step so that if data in future is unordered we have a tidy working set
   let photoArray = [];   
-
   for(let i = 0; i < output.photos.length; i++)
   {
     let img = output.photos[i].img_src;
@@ -232,6 +220,8 @@ async function getPhotos(event) {
 
 
 
+
+
 function generateResultHtml(photosObj) {
 
   let outputHtml = document.createElement("div");  
@@ -270,9 +260,13 @@ function generateResultHtml(photosObj) {
       let listEntry = document.createElement('li');
       listEntry.classList.add("results-list__list-entry");
       listEntry.innerHTML = `
-
-        <a href=${element.img} target="_blank"><img src=${element.img} class="results-list__thumbnail" ></a> ID: ${element.id} <button><i class="fa-solid fa-maximize"></i></button> <button><i class="fa-solid fa-link"></i></button>
-      
+        <a href=${element.img} target="_blank">
+        <img src=${element.img} class="results-list__thumbnail" ></a> 
+        ID: ${element.id} 
+        <div>
+          <button><i class="fa-solid fa-maximize"></i></button> 
+          <button><i class="fa-solid fa-link"></i></button> 
+        </div>
       `;
       subList.appendChild(listEntry);
 
@@ -280,8 +274,9 @@ function generateResultHtml(photosObj) {
     outputHtml.appendChild(subList);   
     renderHtml(outputHtml);  
   }
-
 }
+
+
 
 function renderHtml (resultsHtml){
   // Get results DOM element for content insertion
