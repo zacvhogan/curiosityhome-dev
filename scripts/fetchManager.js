@@ -35,8 +35,7 @@ let datePicker = document.querySelector("#date-form__date");
 let form = document.querySelector("#date-form");
 let date;
 
-// Get results DOM element for content insertion
-let resultView = document.querySelector(".results");
+
 
 // Logic for submit button, fetches and displays data/images
 let submitButton = document.querySelector("#date-form__submit");
@@ -128,6 +127,7 @@ async function getPhotos(event) {
   //TODO: handle reponse error codes
   if (output.photos.length == 0){
     console.log("No data for this date");
+    generateResultHtml("Empty");
     return  
   }
 
@@ -216,37 +216,42 @@ async function getPhotos(event) {
     }    
   });
 
-  // Create final photos Object to be sent for rendering
-  //   Weed of all camera entries that have 0 photos
+  // Create final photos Object to be sent for rendering  
   let photosObjFinal = {};
 
+  // Weed all camera entries that have 0 photos
   for (const key in photosObjFull){   
     if (photosObjFull[key]["imgs"].length != 0){
       photosObjFinal[key] = photosObjFull[key]
     }     
   }   
 
-  // Begin render of results
-  displayPhotoList(photosObjFinal);
+  // Generate results HTML
+  generateResultHtml(photosObjFinal);
 }
 
 
-function displayPhotoList(photosObj) {
 
-  // Clear previous results from DOM. While firstChild exists, remove firstChild
-  while (resultView.firstChild){
-    resultView.removeChild(resultView.firstChild);
-  }
+function generateResultHtml(photosObj) {
 
-  // Create full list UL element
-  let fullList = document.createElement('ul');  
+  let outputHtml = document.createElement("div");  
 
-  // Set results header to include selected date
+  // Set results header to include selected date OR error message  
   let resultHeader = document.createElement('h3');
+  if(photosObj == "Empty"){
+    resultHeader.innerHTML = `
+      No photos taken on this date. Pick another day!
+    `;    
+    outputHtml.appendChild(resultHeader)   
+    renderHtml(outputHtml);  
+    return; 
+  }else{
   resultHeader.innerHTML = `
     Photos taken on ${date}
   `;
-  resultView.appendChild(resultHeader)
+  outputHtml.appendChild(resultHeader)
+  }
+  
 
   // For each photo/metadata object in displayPhotoList, do stuff
   for (const key in photosObj){    
@@ -272,11 +277,24 @@ function displayPhotoList(photosObj) {
       subList.appendChild(listEntry);
 
     });
-    fullList.appendChild(subList);     
+    outputHtml.appendChild(subList);   
+    renderHtml(outputHtml);  
   }
 
-// Render to DOM
-  resultView.appendChild(fullList);
+}
+
+function renderHtml (resultsHtml){
+  // Get results DOM element for content insertion
+  let resultView = document.querySelector(".results");
+
+  // Clear previous results from DOM. While firstChild exists, remove firstChild
+  while (resultView.firstChild){
+  resultView.removeChild(resultView.firstChild);
+  }
+
+
+  // Render to DOM
+  resultView.appendChild(resultsHtml);
   // TODO: Fade opacity instead
 
   // Animate results - fade in
@@ -295,9 +313,8 @@ function displayPhotoList(photosObj) {
   }
 
   resultView.animate(resultsFade, resultsFadeTiming);
+
 }
-
-
 
 
 function getCameraList() {
@@ -316,23 +333,6 @@ function getCameraList() {
 
 
 function animateToStateViewResults() {
-
-    // Fade out date and search buttons
-    let formButtons = document.querySelectorAll(".date-form__button");
-    let formButtonsFade = [
-      {opacity: 1},
-      {opacity: 0}
-    ];
-    let formButtonsFadeTiming = {
-      duration: 600,
-      iterations: 1,
-      easing: "ease-out",
-      fill: "forwards"
-    }
-
-    formButtons.forEach(element => {element.animate(formButtonsFade, formButtonsFadeTiming)});
-
-
 
     // Animate moons - fade out
     let moons = document.querySelectorAll(".background-planet__moon");
@@ -363,8 +363,7 @@ function animateToStateViewResults() {
       easing: "ease",
       fill: "forwards"
     }
-    orbits.forEach(element => element.animate(orbitFade, orbitTiming));
-  
+    orbits.forEach(element => element.animate(orbitFade, orbitTiming));  
   
     // Animate globe - zoom in
     // Retain existing transform settings, because css transform: only allows one declaration per element
