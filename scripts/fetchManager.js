@@ -246,16 +246,24 @@ function generateResultHtml(photosObj) {
   // For each photo/metadata object in displayPhotoList, do stuff
   for (const key in photosObj){    
 
-    // Generate one nested list for each camera
-    let subList = document.createElement('ul');
+    // Generate title bar for each camera
+    let subListTitle = document.createElement('div');
     let cameraName = photosObj[key].name;
-    subList.innerHTML = `
-      <h3>${cameraName}</h3>
+    subListTitle.innerHTML = `
+      <div class="results-list__sublist-title">
+        <h3>${cameraName} - #ofPhotos</h3>
+        <br>
+      </div>
     `;
-    subList.classList.add("results-list__camera")
+    outputHtml.appendChild(subListTitle);  
+
+    // Generate one nested list for each camera
+    let subListContent = document.createElement('ul');
+    
+    
+    subListContent.classList.add("results-list__camera")
 
     // Iterate over each camera's imgs array, and append to that camera's sublist
-
     photosObj[key].imgs.forEach(element => {
       let listEntry = document.createElement('li');
       listEntry.classList.add("results-list__list-entry");
@@ -263,15 +271,15 @@ function generateResultHtml(photosObj) {
         <a href=${element.img} target="_blank">
         <img src=${element.img} class="results-list__thumbnail" ></a> 
         ID: ${element.id} 
-        <div>
-          <button><i class="fa-solid fa-maximize"></i></button> 
-          <button><i class="fa-solid fa-link"></i></button> 
+        <div class="results-list__button-container">
+          <button class="results-list__button"><i class="fa-solid fa-maximize"></i></button> 
+          <button class="results-list__button"><i class="fa-solid fa-link"></i></button> 
         </div>
       `;
-      subList.appendChild(listEntry);
+      subListContent.appendChild(listEntry);
 
     });
-    outputHtml.appendChild(subList);   
+    outputHtml.appendChild(subListContent);   
     renderHtml(outputHtml);  
   }
 }

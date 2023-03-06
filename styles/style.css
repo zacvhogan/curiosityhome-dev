@@ -182,13 +182,18 @@ Further styling for planet animation in planetSystem.css */
 .results {
   z-index: 10;
   background-color: rgba(132, 202, 248, 0.5);
-  width: 80%;
+  width: 90%;
   height: auto;
   margin-left: auto;
   margin-right: auto;  
   opacity: 0;
-  padding: 1em;
   
+  
+}
+
+.results-list__sublist-title{
+  width: 100%;
+  background: blue;
 }
 
 .results > h2 {
@@ -220,15 +225,24 @@ Further styling for planet animation in planetSystem.css */
 .results-list__list-entry {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   flex-wrap: wrap;
   align-content: center;
   margin-bottom: 0.6em;
 }
 
-.results-list__list-entry > button {
-  height: 3em;
-  width: 3em;
+.results-list__button-container{
+  display: flex;
+  justify-content: space-between;
+  
 }
+
+.results-list__button{
+  height: 44px;
+  width: 44px;  
+}
+
+
 
 .modal-image {
   height: 90%;
