@@ -360,7 +360,7 @@ function animateToStateViewResults() {
       delay: 500,
       duration: 200,
       iterations: 1,
-      easing: "ease-out",
+      easing: "ease",
       fill: "forwards"
     }
     orbits.forEach(element => element.animate(orbitFade, orbitTiming));
@@ -371,12 +371,12 @@ function animateToStateViewResults() {
     let backgroundPlanet = document.querySelector(".background-planet__globe-container");
     let planetZoom = [
       {transform: "scale3d(1,1,1) rotateX(-80deg)"},
-      {transform: "scale3d(18,18,18) rotateX(-80deg) rotateZ(-70deg)"}    
+      {transform: "scale3d(25,25,25) rotateX(-80deg) rotateZ(-70deg)"}    
     ];
   
     let planetTiming = {
       delay: 1000,
-      duration: 3000,
+      duration: 5000,
       iterations: 1,
       easing: "ease",
       fill: "forwards"

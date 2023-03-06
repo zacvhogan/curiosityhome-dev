@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="500mm"
+   height="500mm"
+   viewBox="0 0 500 500"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09, custom)"
+   sodipodi:docname="mars_moon_orbit_line.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#555555"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.33165719"
+     inkscape:cx="449.25907"
+     inkscape:cy="961.83653"
+     inkscape:window-width="2560"
+     inkscape:window-height="1203"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1352">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop1348" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="0.67307693"
+         id="stop1350" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1352"
+       id="linearGradient1354"
+       x1="250.33513"
+       y1="-3.6573226"
+       x2="510.4762"
+       y2="246.83044"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,-1,9.9999999e-6,500.04298)" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="color:#000000;fill:none;stroke:url(#linearGradient1354);stroke-width:6.2;stroke-dasharray:none;stroke-opacity:1"
+       d="M 250.37891,497.25977 C 113.65081,497.25977 2.75,386.53742 2.75,250.02149 2.75,113.50555 113.65081,2.7832031 250.37891,2.7832031 c 136.72809,0 247.63086,110.7223469 247.63086,247.2382869"
+       id="path234"
+       sodipodi:nodetypes="cssc" />
+  </g>
+</svg>
