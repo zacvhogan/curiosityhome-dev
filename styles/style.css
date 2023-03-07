@@ -1,3 +1,9 @@
+:root {
+  --transition-time: 200ms;
+}
+
+
+
 * {
   margin: 0;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -11,9 +17,6 @@ button:focus {
 html {  
   color: rgb(238, 247, 255); 
 }
-
-
-
 
 #preload { 
   position: absolute;
@@ -131,7 +134,7 @@ h1 {
   align-items: center;
   justify-content: center;
   /* transform: rotate(45deg); */
-  transition: 0.3s;
+  transition: var(--transition-time);
   clip-path: polygon(0% 50%, 50% 0%, 100% 50%, 50% 100%);
   border: 0;
 }
@@ -191,53 +194,67 @@ Further styling for planet animation in planetSystem.css */
   
 }
 
-.results-list__sublist-title{
+.results__camera__title{
+  padding: 2em;
   width: 100%;
-  background: blue;
+  background: #ffffff24;
+  min-height: auto;
+  transition: var(--transition-time);
 }
 
-.results > h2 {
-  font-size: 4em;
+.results__camera__title:hover{
+  background: silver;
 }
 
-.results-list__thumbnail{
+.results__list__list-title > h3 {
+  font-size: 2rem;
+}
+
+.results__list__thumbnail{
   height: 100px;
   width: 100px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 7px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
   
 }
 
-.results-list__camera{
+.results__camera__list{
   display: flex;
   flex-wrap: wrap;
   gap: 2em;
   flex-direction: row;
-  border: 0.3em solid white;
+  /* border: 0.3em solid white; */
   margin: 1em;
-  list-style: none;
-  padding: 1em;    
+  list-style: none;  
+  height: 0px;
+  overflow: hidden; 
+  transition: var(--transition-time);
 }
 
-.results-list__camera > h2 {
+.results__camera > h2 {
   
 }
 
-.results-list__list-entry {
+.height-test {
+  height: auto;
+}
+
+.results__list__list-entry {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
   align-content: center;
   margin-bottom: 0.6em;
+  
 }
 
-.results-list__button-container{
+.results__list__button-container{
   display: flex;
   justify-content: space-between;
   
 }
 
-.results-list__button{
+.results__list__button{
   height: 44px;
   width: 44px;  
 }

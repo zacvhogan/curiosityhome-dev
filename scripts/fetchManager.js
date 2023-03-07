@@ -83,8 +83,7 @@ async function pagePreload() {
   },0)
 }
 
-function animateToStateInitial() {
-}
+
 
 
 
@@ -224,9 +223,11 @@ async function getPhotos(event) {
 
 function generateResultHtml(photosObj) {
 
+  // Generate OUTPUT HTML object - this will be rendered as one object later
   let outputHtml = document.createElement("div");  
+  outputHtml.classList.add("results__list")
 
-  // Set results header to include selected date OR error message  
+  // Generate RESULTS HEADER to show date OR error message  
   let resultHeader = document.createElement('h3');
   if(photosObj == "Empty"){
     resultHeader.innerHTML = `
@@ -243,45 +244,48 @@ function generateResultHtml(photosObj) {
   }
   
 
-  // For each photo/metadata object in displayPhotoList, do stuff
+  // Iterate over all keys in Photos Object
   for (const key in photosObj){    
 
-    // Generate title bar for each camera
-    let subListTitle = document.createElement('div');
+    let listContainer = document.createElement('div');
+    listContainer.classList.add("results__camera")
+
+    // Generate LIST TITLE for each camera
+    let listTitle = document.createElement('div');
+    listTitle.classList.add("results__camera__title")
     let cameraName = photosObj[key].name;
-    subListTitle.innerHTML = `
-      <div class="results-list__sublist-title">
-        <h3>${cameraName} - #ofPhotos</h3>
-        <br>
-      </div>
+    listTitle.innerHTML = `     
+        <h3>${cameraName} - ${photosObj[key].imgs.length} photos</h3>      
     `;
-    outputHtml.appendChild(subListTitle);  
+    listContainer.appendChild(listTitle);
 
-    // Generate one nested list for each camera
-    let subListContent = document.createElement('ul');
-    
-    
-    subListContent.classList.add("results-list__camera")
+    // Generate FULL LIST for each camera
+    let listContent = document.createElement('ul');      
+    listContent.classList.add("results__camera__list")
 
-    // Iterate over each camera's imgs array, and append to that camera's sublist
+    // Iterate over each camera's imgs array, and append photo ID# and img elements for each
+    // Add buttons markup and classes for each
     photosObj[key].imgs.forEach(element => {
       let listEntry = document.createElement('li');
-      listEntry.classList.add("results-list__list-entry");
+      listEntry.classList.add("results__list__list-entry");
       listEntry.innerHTML = `
-        <a href=${element.img} target="_blank">
-        <img src=${element.img} class="results-list__thumbnail" ></a> 
         ID: ${element.id} 
-        <div class="results-list__button-container">
-          <button class="results-list__button"><i class="fa-solid fa-maximize"></i></button> 
-          <button class="results-list__button"><i class="fa-solid fa-link"></i></button> 
+        <a href=${element.img} target="_blank"><img src=${element.img} class="results__list__thumbnail" ></a> 
+          <div class="results__list__button-container">
+          <button class="results__list__button"><i class="fa-solid fa-maximize"></i></button> 
+          <button class="results__list__button"><i class="fa-solid fa-link"></i></button> 
         </div>
       `;
-      subListContent.appendChild(listEntry);
+      listContent.appendChild(listEntry);
 
     });
-    outputHtml.appendChild(subListContent);   
-    renderHtml(outputHtml);  
+    // Append the current list (for this camera) to outputHTML
+    listContainer.appendChild(listContent);
+    outputHtml.appendChild(listContainer);       
   }
+  // Once all photo object keys have been iterated over and prepared for rendering
+  // Render outputHTML
+  renderHtml(outputHtml);  
 }
 
 
@@ -316,6 +320,7 @@ function renderHtml (resultsHtml){
   }
 
   resultView.animate(resultsFade, resultsFadeTiming);
+  generateUIInteractions();
 
 }
 
@@ -384,4 +389,25 @@ function animateToStateViewResults() {
       fill: "forwards"
     }  
     backgroundPlanet.animate(planetZoom, planetTiming);
+}
+
+
+
+// Handle UI interactions hide/show photo list per camera
+// results__camera__title
+
+function generateUIInteractions(){
+
+  let listHeaders = document.querySelectorAll(".results__camera__title");
+
+  listHeaders.forEach(element => {
+    let target = element.nextElementSibling;
+    element.addEventListener("click", (event) => {
+      target.classList.toggle("height-test");
+    });
+
+  });
+
+
+
 }
