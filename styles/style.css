@@ -2,6 +2,10 @@
   --transition-time: 200ms;
 }
 
+@font-face {
+  font-family:"AQUIRE";
+  src: url("font/aquire/Aquire.otf") format("opentype");
+}
 
 
 * {
@@ -51,6 +55,7 @@ html {
   width: 100vw;  
   overflow-x: hidden;
   z-index: 10;
+  overflow-y: scroll;
   
 }
 
@@ -67,12 +72,12 @@ html {
 .header {  
   grid-area: hd;  
   text-align: center;
-  background-color: rgba(0 0 0 0);      
+  /* background-color: rgba(0 0 0 0);       */
   width: 100%;
   padding: 10px;
   position: sticky;
   top: 0;
-  background: black;
+  /* background: black; */
   z-index: 11;
 }
 
@@ -93,10 +98,10 @@ html {
 }
 
 h1 {  
-  font-size: 2rem;
+  font-size: 4rem;
   line-height: 1em;
-  color: rgb(255, 249, 237);
-  font-family: 'Quantico', sans-serif;
+  color: rgb(255 198 128);
+  font-family: "AQUIRE";
 }
 
 
@@ -116,33 +121,41 @@ h1 {
 
 #date-form {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
   justify-content: center;
   align-items: center;  
+  width: 300px;
+
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
 }
 
 
 .date-form__button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: flex-start;
   margin: 0em 1em 0em 1em;    
-  padding: 2em;
+  /* padding: 2em; */
   /* border: 3px solid rgb(240, 178, 219);   */
   box-sizing: border-box;
   background-color: white;
   font-size: 1rem;
-  width: 3em;
-  height: 3em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-weight: 800;
+  width: 100%;
+  height: 50px;
+  
+ 
   /* transform: rotate(45deg); */
   transition: var(--transition-time);
-  clip-path: polygon(0% 50%, 50% 0%, 100% 50%, 50% 100%);
+  
   border: 0;
 }
 
 #date-form__date {
-  clip-path: polygon(0% 50%, 20% 0%, 80% 0%, 100% 50%, 80% 100%, 20% 100%);
+  
   box-sizing: border-box;
-  width: 200px; 
+  width: 100%; 
 }
 
 .date-form__button:hover {
