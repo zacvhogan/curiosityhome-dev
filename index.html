@@ -64,46 +64,48 @@
     </p></div>
 
     <!-- Planet-moon system animation -->
-    <div class="background-planet">
-      <!-- Inclined plane relative to camera -->
-      <div class="background-planet__system">
-        <!-- Each orbit div follows the incline set by parent div, and spins to create movement -->
-        <div class="background-planet__moon-orbit background-planet__moon-orbit-1">  
-          <img class="background-planet__moon-orbit__trail" src="img/mars_moon_orbit_line.svg">
-          <!-- Moon div -->
-          <div class="background-planet__moon background-planet__moon-1">              
-            <img src="img/phobos_png.png">
-          </div>        
-          
-        </div>
-        <div class="background-planet__moon-orbit background-planet__moon-orbit-2">  
-          <img class="background-planet__moon-orbit__trail" src="img/mars_moon_orbit_line.svg">
-          <div class="background-planet__moon background-planet__moon-2"> 
-            <img src="img/deimos_png.png">
-          </div>
-        </div>
-
-        
-          <!-- Planet SVG element, given 3D transform rotate value inverse of background-planet__system -->
-          
-          <div class="background-planet__globe-container">
+    <div class="background">
+      <div class="background-planet">
+        <!-- Inclined plane relative to camera -->
+        <div class="background-planet__system">
+          <!-- Each orbit div follows the incline set by parent div, and spins to create movement -->
+          <div class="background-planet__moon-orbit background-planet__moon-orbit-1">  
+            <img class="background-planet__moon-orbit__trail" src="img/mars_moon_orbit_line.svg">
+            <!-- Moon div -->
+            <div class="background-planet__moon background-planet__moon-1">              
+              <img src="img/phobos_png.png">
+            </div>        
             
-            <div class="background-planet__globe">                                  
-              <img src="img/mars_shadow.png">                
-            </div>
-            <div class="background-planet__atmos">
-            </div>
-            <!-- <img class="background-planet__atmos" src="img/mars_atmos_svg.svg">    -->
           </div>
-          
-            
+          <div class="background-planet__moon-orbit background-planet__moon-orbit-2">  
+            <img class="background-planet__moon-orbit__trail" src="img/mars_moon_orbit_line.svg">
+            <div class="background-planet__moon background-planet__moon-2"> 
+              <img src="img/deimos_png.png">
+            </div>
+          </div>
 
+          
+            <!-- Planet SVG element, given 3D transform rotate value inverse of background-planet__system -->
+            
+            <div class="background-planet__globe-container">
+              
+              <div class="background-planet__globe">                                  
+                <img src="img/mars_shadow.png">                
+              </div>
+              <div class="background-planet__atmos">
+              </div>
+              <!-- <img class="background-planet__atmos" src="img/mars_atmos_svg.svg">    -->
+            </div>
+            
+              
+
+        </div>
       </div>
-    </div>
-    <div class="background-starfield__container">
-      <canvas class="background-starfield">
-      </canvas>
-    </div>
+      <div class="background-starfield__container">
+        <canvas class="background-starfield">
+        </canvas>
+      </div>
+  </div>
 
   
   

@@ -192,6 +192,7 @@ Further styling for planet animation in planetSystem.css */
   width: 100%;
   background-color: rgba(0 0 0 0);    
   transform: translate(0, -50%);
+  filter: brightness(1.5);
 }
 
 
