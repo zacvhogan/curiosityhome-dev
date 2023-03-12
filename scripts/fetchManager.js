@@ -30,6 +30,11 @@
 
 // Set global variables
 
+flatpickr("#test",{
+  minDate: "2020-01",
+  placeholder: "test"
+});
+
 // TODO: THIS API KEY SHOULD NOT BE EXPOSED
 const API_KEY = "fKE7SyalORoMRuiAsYzfftcTvhKDg0EeJqo4lMdm";
 
@@ -66,8 +71,12 @@ async function pagePreload() {
   
   // Page setup 
   // Set date limits using manifest data
-  datePicker.min =  "2012-08-06";
-  datePicker.max = manifest.photo_manifest.max_date;
+
+
+
+
+  //datePicker.min =  "2012-08-06";
+  //datePicker.max = manifest.photo_manifest.max_date;
   manifestDate.innerHTML = manifest.photo_manifest.max_date;
 
   // Show page  
