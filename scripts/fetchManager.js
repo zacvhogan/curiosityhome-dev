@@ -22,17 +22,21 @@
 //// END PLAN
 
 
-
-
-
+// Disable page refresh on button click for ALL buttons
+let allButtons = document.querySelectorAll("button");
+allButtons.forEach(element => {
+  element.addEventListener("click", event => {
+    event.preventDefault();
+  });
+});
 
 
 
 // Set global variables
 
-flatpickr("#test",{
+flatpickr("#date-form__date",{
   minDate: "2020-01",
-  placeholder: "test"
+  placeholder: "Pick a date"
 });
 
 // TODO: THIS API KEY SHOULD NOT BE EXPOSED
