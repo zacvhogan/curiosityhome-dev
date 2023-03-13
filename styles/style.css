@@ -83,18 +83,17 @@ html {
   width: 100%;
   padding: 10px;
   box-sizing:border-box;
-  position: sticky;
+  /* position: sticky; */
   top: 0;
   /* background: black; */
-  z-index: -9;
+  z-index: 0;
 }
 
 .main {
   grid-area: bd;
   position: relative;    
   height: 100%;
-  width: 100%;
-  overflow-x: hidden;
+  width: 100%; 
 }
 
 .footer {
@@ -196,6 +195,7 @@ Further styling for planet animation in planetSystem.css */
   background-color: rgba(0 0 0 0);    
   transform: translate(0, -50%);
   filter: brightness(1.5);
+  
 }
 
 
