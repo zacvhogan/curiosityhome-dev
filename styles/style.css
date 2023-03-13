@@ -2,10 +2,12 @@
   --transition-time: 200ms;
 }
 
-/* @font-face {
-  font-family: "AQUIRE";
-  src: url("font/aquire/Aquire.otf") format("opentype");
-} */
+
+@media only screen and (max-width: 480px) {
+  h1 {
+    font-size: 1rem;
+  }
+}
 
 @font-face {
   font-family: 'COCOMAT';
@@ -83,6 +85,7 @@ html {
   /* background-color: rgba(0 0 0 0);       */
   width: 100%;
   padding: 10px;
+  box-sizing:border-box;
   position: sticky;
   top: 0;
   /* background: black; */
@@ -106,7 +109,7 @@ html {
 }
 
 h1 {  
-  font-size: 4.5rem;
+  font-size: 4rem;
   letter-spacing: 0.2em;
   line-height: 1.2em;
   color: rgb(193, 220, 255);
@@ -189,7 +192,7 @@ Further styling for planet animation in planetSystem.css */
   height: auto;
   position: absolute;
   top: 50%;
-  left: 0;
+  /* left: 0; */
   padding-top: 10vh;  
   width: 100%;
   background-color: rgba(0 0 0 0);    
@@ -286,6 +289,8 @@ Further styling for planet animation in planetSystem.css */
 .text-white {
   color: white;
 }
+
+
 
 .background-starfield {
   position: absolute; 

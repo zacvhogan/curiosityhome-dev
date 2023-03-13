@@ -65,7 +65,7 @@ async function pagePreload() {
   .then(data => data);  
   
   // Flatpickr library, attach to DOM
-  let datePicker = flatpickr("#date-form__date", {});  
+  let datePicker = flatpickr("#date-form__date", {disableMobile: "true"});  
  
   // Set date limits using manifest data
   datePicker.set("minDate", "2012-08-06");  
@@ -80,7 +80,6 @@ async function pagePreload() {
   }
   // Parse date
   date = dateStr;  
-
   document.querySelector("#date-form__date").innerHTML = dateStr;
   });
 
