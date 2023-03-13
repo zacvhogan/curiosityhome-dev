@@ -3,12 +3,6 @@
 }
 
 
-@media only screen and (max-width: 480px) {
-  h1 {
-    font-size: 1rem;
-  }
-}
-
 @font-face {
   font-family: 'COCOMAT';
   src: url('font/Cocomat_light/COCOMAT-Light.woff2') format('woff2'),
@@ -29,7 +23,10 @@ button:focus {
 }
 
 html {  
-  color: rgb(238, 247, 255); 
+  color: rgb(238, 247, 255);   
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+
 }
 
 #preload { 
@@ -61,7 +58,7 @@ html {
   "bd bd bd bd bd bd bd bd bd bd bd bd"
   "ft ft ft ft ft ft ft ft ft ft ft ft"; 
   background: rgb(5,4,10);  
-  
+  height: 100vh;
   width: 100vw;  
   overflow-x: hidden;
   z-index: 10;
@@ -89,7 +86,7 @@ html {
   position: sticky;
   top: 0;
   /* background: black; */
-  z-index: 11;
+  z-index: -9;
 }
 
 .main {
@@ -97,6 +94,7 @@ html {
   position: relative;    
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .footer {
@@ -191,9 +189,9 @@ Further styling for planet animation in planetSystem.css */
   z-index: -9;
   height: auto;
   position: absolute;
-  top: 50%;
+  bottom: 0;
   /* left: 0; */
-  padding-top: 10vh;  
+  /* padding-top: 10vh;   */
   width: 100%;
   background-color: rgba(0 0 0 0);    
   transform: translate(0, -50%);
@@ -310,3 +308,21 @@ Further styling for planet animation in planetSystem.css */
 
 
 
+
+
+
+
+
+
+/* MEDIA QUERIES */
+/* Update this for mobile-first once design finalised */
+
+@media only screen and (max-width: 480px) {
+  h1 {
+    /* color: red; */
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+}
