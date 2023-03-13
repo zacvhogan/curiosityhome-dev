@@ -145,23 +145,24 @@ h1 {
   color: white;  
   width: 100%;
   height: 50px;
-  border-radius: 25px;   
-  transition: var(--transition-time);  
+  border-radius: 25px;      
+  transition: width 1s, color 1.5s; 
   border: 3px solid white; 
-  background: none;
+  background: none;  
 }
 
-.date-form__button:disabled { 
+#date-form__submit:disabled { 
   color: transparent; 
+  width: 50px;
 }
 
-.date-form__button:hover:disabled {
+#date-form__submit:hover:disabled {
   background-color: transparent;
 }
 
 
 #date-form__submit {
-  width: 50px;
+  width: 75%;
 }
 
 .date-form__button:hover {

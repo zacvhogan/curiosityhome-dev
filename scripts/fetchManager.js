@@ -1,5 +1,4 @@
 //// PLAN
-
 // ON PAGE LOAD
 // Fetch Curiosity manifest data, get landing & max dates
 // Set max range for date picker
@@ -18,43 +17,23 @@
 // - Show text list with 'see image' button
 // - Display as modal OR dropdown w/ lazy loading
 // - Option to copy photo link, option to see full size
-
 //// END PLAN
 
 
-// Disable page refresh on button click for ALL buttons
-let allButtons = document.querySelectorAll("button");
-allButtons.forEach(element => {
-  element.addEventListener("click", event => {
-    event.preventDefault();
-  });
-});
+///////////////////////////////////////////////////////////////////////////////////////
 
 
+// SET GLOBAL VARIABLES
 
-// Set global variables
-
-flatpickr("#date-form__date",{
-  minDate: "2020-01",
-  placeholder: "Pick a date"
-});
-
-// TODO: THIS API KEY SHOULD NOT BE EXPOSED
+// TODO: This API key should not be exposed!
+// Shift key handling to PHP once migrated to LAMP server, request new key.
 const API_KEY = "fKE7SyalORoMRuiAsYzfftcTvhKDg0EeJqo4lMdm";
 
 let app = document.querySelector("#app");
 let loadinganim = document.querySelector("#preload");
 let manifest;
-let datePicker = document.querySelector("#date-form__date");
 let form = document.querySelector("#date-form");
 let date;
-
-
-
-// Logic for submit button, fetches and displays data/images
-let submitButton = document.querySelector("#date-form__submit");
-submitButton.addEventListener("click", (event) => (getPhotos(event)));
-
 
 // Fetch photo manifest, animate page load
 pagePreload();
@@ -63,29 +42,50 @@ pagePreload();
 
 
 
-async function pagePreload() {  
-  let manifestDate = document.querySelector("#manifest-date");
+// PAGE PRELOAD - do tasks before UI renders, then render UI
 
-  // Fetch  manifest
+async function pagePreload() {  
+
+  // Disable page refresh on button click for ALL buttons
+  let allButtons = document.querySelectorAll("button");
+  allButtons.forEach(element => {
+    element.addEventListener("click", event => {
+      event.preventDefault();
+    });
+  });
+
+  // Logic for submit button, fetches and displays data/images
+  let submitButton = document.querySelector("#date-form__submit");
+  submitButton.addEventListener("click", (event) => (getPhotos(event)));  
+
+  // Fetch  mission manifest, incl. most recent data date
+  let manifestDate = document.querySelector("#manifest-date");
   manifest =  await fetch("https://api.nasa.gov/mars-photos/api/v1/manifests/Curiosity?api_key=" + API_KEY)
   .then(response => response.json())
-  .then(data => data);
-
-  // console.log("Total photos since mission start: " + manifest.photo_manifest.total_photos);
+  .then(data => data);  
   
-  // Page setup 
+  // Flatpickr library, attach to DOM
+  let datePicker = flatpickr("#date-form__date", {});  
+ 
   // Set date limits using manifest data
+  datePicker.set("minDate", "2012-08-06");  
+  datePicker.set("maxDate", manifest.photo_manifest.max_date)
+  manifestDate.innerHTML = manifest.photo_manifest.max_date;  
+
+  // FLATPICKR INTERACTION HANDLER
+  datePicker.config.onClose.push(function(selectedDates, dateStr) { 
+  // Reveal submit button. Anims handled in CSS
+  if (submitButton.disabled){
+    submitButton.removeAttribute("disabled");
+  }
+  // Parse date
+  date = dateStr;  
+
+  document.querySelector("#date-form__date").innerHTML = dateStr;
+  });
 
 
-
-
-  //datePicker.min =  "2012-08-06";
-  //datePicker.max = manifest.photo_manifest.max_date;
-  manifestDate.innerHTML = manifest.photo_manifest.max_date;
-
-  // Show page  
-  // Short delay to show logo for testing - remove this later
-
+  // RENDER PAGE, HIDE PRELOAD ANIM
   setTimeout(()=>{
     app.animate([
       {opacity: 0},
@@ -100,6 +100,11 @@ async function pagePreload() {
     {duration: 500, fill: "forwards"});
   },0)
 }
+
+
+
+
+
 
 
 
@@ -121,7 +126,6 @@ async function getPhotos(event) {
 
   // Build fetch URL
   let urlPrefix = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=";
-  date = datePicker.value;
   let urlSuffix = "&api_key=";
   let fetchURL = new URL(urlPrefix + date + urlSuffix + API_KEY);  
   
