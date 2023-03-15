@@ -7,6 +7,7 @@ on planet/moon billboard divs to make it easier to adjust orbital plane*/
   width: 300px;
   height: 300px;
   position: relative;
+  top: 50%;
   margin-left: auto;
   margin-right: auto;
   transform-style: preserve-3d;

@@ -57,7 +57,7 @@ html {
   "hd hd hd hd hd hd hd hd hd hd hd hd"
   "bd bd bd bd bd bd bd bd bd bd bd bd"
   "ft ft ft ft ft ft ft ft ft ft ft ft"; 
-  background: rgb(5,4,10);  
+  background: transparent;
   height: 100vh;
   width: 100vw;  
   overflow-x: hidden;
@@ -182,21 +182,7 @@ h1 {
 
 
 
-/* Container for background planet
-Further styling for planet animation in planetSystem.css */
-.background-planet {
-  z-index: -9;
-  height: auto;
-  position: absolute;
-  bottom: 0;
-  /* left: 0; */
-  /* padding-top: 10vh;   */
-  width: 100%;
-  background-color: rgba(0 0 0 0);    
-  transform: translate(0, -50%);
-  filter: brightness(1.5);
-  
-}
+
 
 
 .results {
@@ -276,8 +262,6 @@ Further styling for planet animation in planetSystem.css */
   width: 44px;  
 }
 
-
-
 .modal-image {
   height: 90%;
   width: 90%;
@@ -289,25 +273,43 @@ Further styling for planet animation in planetSystem.css */
 }
 
 
+.background {
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  max-height: 100vh;
+  max-width: 100vw;
+  z-index: -1
+}
 
 .background-starfield {
-  position: absolute; 
-  
-  
+  position: absolute;  
 }
 
 .background-starfield__container {
   position: absolute;
-  height: 100vh;
+  top: 0;
+  background: black;
+  height: 100%;
   width: 100%;
   z-index: -10;  
   overflow: hidden;  
 }
 
-
-
-
-
+/* Container for background planet
+Further styling for planet animation in planetSystem.css */
+.background-planet {
+  z-index: -9;  
+  position: absolute;
+  top: 0;  
+  width: 100%;
+  height: 100%;
+  background: transparent;     
+  filter: brightness(1.5);
+  
+}
 
 
 

@@ -257,11 +257,6 @@ function generateResultHtml(photosObj) {
     outputHtml.appendChild(resultHeader)   
     renderHtml(outputHtml);  
     return; 
-  }else{
-  resultHeader.innerHTML = `
-    Photos taken on ${date}
-  `;
-  outputHtml.appendChild(resultHeader)
   }
   
 

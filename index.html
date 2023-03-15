@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  
 
 <head>
   <title>Friends On Mars</title>
@@ -20,51 +21,54 @@
   <link rel="icon" href="img/favicon.png">
 </head>
 
-<body id="app">
+<body>
 
   <!-- <div id="preload">
     <img class="preload__icon" src="img/loading_1.svg"></img>    
   </div> -->
 
 
-  
+    <div id="app">
 
-    <!-- <div class="nav"> Mars Curiosity [PHOTOS]  </div>      -->
-    
-    <div class="header">
-      <h1>FRIENDS ON&nbsp;MARS</h1>
-      <h2>Explore with NASA's&nbsp;Curiosity rover</h2>
-      <br>
+      <!-- <div class="nav"> Mars Curiosity [PHOTOS]  </div>      -->
       
-      <div class="date-form-container">
-        <form id="date-form">
-         <!-- <input type="date" name="date" id="date-form__date" class="date-form__button" placeholder="Select Date" required> -->
-          <button id="date-form__date" class="date-form__button">Pick a date</button>
-          <button type="submit" name="submit" id="date-form__submit" class="date-form__button" disabled>Explore!</button>
-        </form> 
-      </div>
-    
-    </div>
-
-    <div class="main">
-
+      <div class="header">
+        <h1>FRIENDS ON&nbsp;MARS</h1>
+        <h2>Explore with NASA's&nbsp;Curiosity rover</h2>
+        <br>
+        
+        <div class="date-form-container">
+          <form id="date-form">
+          <!-- <input type="date" name="date" id="date-form__date" class="date-form__button" placeholder="Select Date" required> -->
+            <button id="date-form__date" class="date-form__button">Pick a date</button>
+            <button type="submit" name="submit" id="date-form__submit" class="date-form__button" disabled>Explore!</button>
+          </form> 
+        </div>
       
-
-
-      <div class="results">
       </div>
 
+      <div class="main">
+
+        
+
+
+        <div class="results">
+        </div>
+
+      </div>
+
+
+      <div class="footer"><p>
+        Curiosity photo manifest latest version available: <span id="manifest-date"></span>
+        <br>
+        test
+      </p></div>
     </div>
-
-
-    <div class="footer"><p>
-      Curiosity photo manifest latest version available: <span id="manifest-date"></span>
-      <br>
-      test
-    </p></div>
 
     <!-- Planet-moon system animation -->
     
+      
+    <div class="background">
       <div class="background-planet">
         <!-- Inclined plane relative to camera -->
         <div class="background-planet__system">
@@ -105,7 +109,7 @@
         <canvas class="background-starfield">
         </canvas>
       </div>
-  
+    </div>
 
   
   
