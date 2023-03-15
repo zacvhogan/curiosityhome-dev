@@ -288,10 +288,14 @@ function generateResultHtml(photosObj) {
         ID: ${element.id} 
         <a href=${element.img} target="_blank"><img src=${element.img} class="results__list__thumbnail" ></a> 
           <div class="results__list__button-container">
-          <button class="results__list__button"><i class="fa-solid fa-maximize"></i></button> 
-          <button class="results__list__button"><i class="fa-solid fa-link"></i></button> 
+          
         </div>
       `;
+
+      //insert into listEntry.innerHTML above
+      //<button class="results__list__button"><i class="fa-solid fa-maximize"></i></button> 
+      //<button class="results__list__button"><i class="fa-solid fa-link"></i></button> 
+      
       listContent.appendChild(listEntry);
 
     });
