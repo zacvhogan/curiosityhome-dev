@@ -73,7 +73,7 @@ async function pagePreload() {
   manifestDate.innerHTML = manifest.photo_manifest.max_date;  
 
   // FLATPICKR INTERACTION HANDLER
-  datePicker.config.onClose.push(function(selectedDates, dateStr) { 
+  datePicker.config.onChange.push(function(selectedDates, dateStr) { 
   // Reveal submit button. Anims handled in CSS
   if (submitButton.disabled){
     submitButton.removeAttribute("disabled");
