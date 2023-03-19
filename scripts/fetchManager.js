@@ -25,10 +25,6 @@
 
 // SET GLOBAL VARIABLES
 
-// TODO: This API key should not be exposed!
-// Shift key handling to PHP once migrated to LAMP server, request new key.
-const API_KEY = "fKE7SyalORoMRuiAsYzfftcTvhKDg0EeJqo4lMdm";
-
 let app = document.querySelector("#app");
 let loadinganim = document.querySelector("#preload");
 let manifest;
@@ -58,15 +54,18 @@ async function pagePreload() {
   let submitButton = document.querySelector("#date-form__submit");
   submitButton.addEventListener("click", (event) => (getPhotos(event)));  
 
-  // Fetch  mission manifest, incl. most recent data date
+  // Fetch  mission manifest via server backend, incl. most recent data date
   let manifestDate = document.querySelector("#manifest-date");
-  manifest =  await fetch("https://api.nasa.gov/mars-photos/api/v1/manifests/Curiosity?api_key=" + API_KEY)
+  
+  let manifest = await fetch("php/manifestFetchFE.php")
   .then(response => response.json())
-  .then(data => data);  
+  .then (data => data);
+  console.log(manifest);
+  // manifest = JSON.parse(manifest);
   
   // Flatpickr library, attach to DOM
   let datePicker = flatpickr("#date-form__date", {disableMobile: "true"});  
- 
+
   // Set date limits using manifest data
   datePicker.set("minDate", "2012-08-06");  
   datePicker.set("maxDate", manifest.photo_manifest.max_date)
@@ -123,14 +122,21 @@ async function getPhotos(event) {
   animateToStateViewResults();
   
 
-  // Build fetch URL
-  let urlPrefix = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=";
-  let urlSuffix = "&api_key=";
-  let fetchURL = new URL(urlPrefix + date + urlSuffix + API_KEY);  
+ 
+  
+  
   
   // Fetch data  
-  let output = await fetch(fetchURL).then(response => response.json()).then(data => data);
- 
+  // Output = call to FE PHP > which calls to BE PHP
+  // pass to PHP the date selected as a string - how do we do this? TODO: 
+  // use variable 'date'  
+  // Use AJAX https://www.w3schools.com/php/php_ajax_php.asp TODO:
+  let output = await fetch("php/fetchPhotosFE.php",{
+   
+
+  })
+  .then(response => response.json()).then(data => data);
+
 
   //TODO: if no data for this date, display message and early return  
   //TODO: handle reponse error codes

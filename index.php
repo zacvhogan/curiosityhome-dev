@@ -36,18 +36,26 @@
           <li><a href="https://mars.nasa.gov/msl/home/">Curiosity</a></li>
           <li><a href="https://www.zachogan.com/curiosityhome"><div class="home-icon"></div></a></li>
           <li><a href="https://github.com/zacvhogan/curiosityhome-dev">Dev</a></li>
-          <li><a href="https://www.zachogan.com">Me</a></li>
+          <li><a href="https://www.zachogan.com">Me</a></li>          
         </ul>
       </nav>
+
+      
         
       
       <div class="header">
         <h1>FRIENDS ON&nbsp;MARS</h1>
         <h2>Explore with NASA's&nbsp;Curiosity rover</h2>
         <br>
+
+          <?php            
+            echo getenv('NAME'); 
+          ?>
+
+        <div id="phptest"></div>
         
         <div class="date-form-container">
-          <form id="date-form">
+          <form id="date-form" action="../../private/curiosityhome/php/imagePost.php" method="post">
           <!-- <input type="date" name="date" id="date-form__date" class="date-form__button" placeholder="Select Date" required> -->
             <button id="date-form__date" class="date-form__button">Pick a date</button>
             <button type="submit" name="submit" id="date-form__submit" class="date-form__button" disabled>Explore!</button>
