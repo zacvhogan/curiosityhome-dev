@@ -132,7 +132,8 @@ async function getPhotos(event) {
   // use variable 'date'  
   // Use AJAX https://www.w3schools.com/php/php_ajax_php.asp TODO:
   let output = await fetch("php/fetchPhotosFE.php",{
-   
+
+    
 
   })
   .then(response => response.json()).then(data => data);
