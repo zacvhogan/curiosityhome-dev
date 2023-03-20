@@ -54,22 +54,48 @@ async function pagePreload() {
   let submitButton = document.querySelector("#date-form__submit");
   submitButton.addEventListener("click", (event) => (getPhotos(event)));  
 
-  // Fetch  mission manifest via server backend, incl. most recent data date
-  let manifestDate = document.querySelector("#manifest-date");
   
-  let manifest = await fetch("php/manifestFetchFE.php")
-  .then(response => response.json())
-  .then (data => data);
-  console.log(manifest);
-  // manifest = JSON.parse(manifest);
-  
+
+
   // Flatpickr library, attach to DOM
   let datePicker = flatpickr("#date-form__date", {disableMobile: "true"});  
 
-  // Set date limits using manifest data
-  datePicker.set("minDate", "2012-08-06");  
-  datePicker.set("maxDate", manifest.photo_manifest.max_date)
-  manifestDate.innerHTML = manifest.photo_manifest.max_date;  
+  // Manifest date - query for displaying latest manifest release date on site
+  let manifestDate = document.querySelector("#manifest-date");
+
+  // Fetch  mission manifest via server backend, incl. most recent data date
+  let manifest;
+  // Set up XML HTTP Request for the manifest
+  let manifestXmlHttp = new XMLHttpRequest();
+  // Configure query
+  let manifestQueryURL = "php/frontController.php?type=manifest";
+  manifestXmlHttp.open("POST", manifestQueryURL, true);
+  // Action query
+  manifestXmlHttp.send();
+
+  // Monitor query and when query resolves correctly, do stuff with the returned data
+  manifestXmlHttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200){
+      manifest = JSON.parse(this.responseText); 
+      console.log(manifest);  
+       // Set date limits using manifest data
+      datePicker.set("minDate", "2012-08-06");  
+      datePicker.set("maxDate", manifest.photo_manifest.max_date)
+      manifestDate.innerHTML = manifest.photo_manifest.max_date;  
+      
+    }else{
+      // Else log an error
+      // TODO: Put a timer on this so that the query has a timeout
+      console.log(`PHP/XML error in Manifest POST - ${this.status}`);
+    }
+  }
+
+
+  
+  
+  
+
+ 
 
   // FLATPICKR INTERACTION HANDLER
   datePicker.config.onChange.push(function(selectedDates, dateStr) { 
@@ -127,11 +153,9 @@ async function getPhotos(event) {
   
   
   // Fetch data  
-  // Output = call to FE PHP > which calls to BE PHP
-  // pass to PHP the date selected as a string - how do we do this? TODO: 
-  // use variable 'date'  
-  // Use AJAX https://www.w3schools.com/php/php_ajax_php.asp TODO:
-  let output = await fetch("php/fetchPhotosFE.php",{
+
+
+    let output = await fetch("php/fetchPhotosFE.php",{
 
     
 
