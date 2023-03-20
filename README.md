@@ -1,5 +1,6 @@
 # Friends on Mars
 www.zachogan.com/curiosityhome
+<br>
 Find and view photos taken by Mars rovers!
 This takes a date provided by the user and calls the NASA Mars Rover Photos API to return all the photos taken on that date.
 Photos are sorted and presented in lists for each camera present on the rover.
@@ -10,6 +11,9 @@ Photos are sorted and presented in lists for each camera present on the rover.
 - Backend - PHP
 - Visual development - Inkscape, Photoshop
 - Basic sysadmin - LAMP server on Digital Ocean
+
+## Third-party Libraries
+- Flatpickr https://flatpickr.js.org/
 
 
 ## API calls
@@ -38,8 +42,11 @@ Users are notified if a date has no photos recorded for it (try 1st March 2023).
 
 ## Frontend Design Implementation
 The background planet system is constructed through rotating divs and imgs in 3D.
+
 The moons are divs attached to an inclined div plane. The moons themselves are animated to be rotated using the inverse of the rotations applied to the rest of the system - this keeps them facing the camera at all times.
+
 The background planet's 'spin' is created using a scrolling background image within a circular div.
+
 The starfield is a simple HTML5 canvas. The number of stars generated scales with the size of the viewport.
 
 
