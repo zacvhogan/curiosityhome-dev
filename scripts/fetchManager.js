@@ -147,20 +147,20 @@ async function getPhotos(event) {
   // Begin animate form, background while results are fetched and processed
   animateToStateViewResults();
   
-
- 
   
-  
+  // Build fetch URL
+  let urlPrefix = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=";
+  let urlSuffix = "&api_key=";
+  // FIXME: Including the API key below is obviously not good practice!
+  // This is a very low risk key (anybody can get one in about a minute), but it is still a priority to shift
+  // all of this into the backend and use PHP + envvars to manage this communication. 
+  let fetchURL = new URL(urlPrefix + date + urlSuffix + "fKE7SyalORoMRuiAsYzfftcTvhKDg0EeJqo4lMdm");  
   
   // Fetch data  
+  let output = await fetch(fetchURL).then(response => response.json()).then(data => data);  
 
 
-    let output = await fetch("php/fetchPhotosFE.php",{
-
-    
-
-  })
-  .then(response => response.json()).then(data => data);
+  
 
 
   //TODO: if no data for this date, display message and early return  

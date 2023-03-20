@@ -46,11 +46,7 @@
       <div class="header">
         <h1>FRIENDS ON&nbsp;MARS</h1>
         <h2>Explore with NASA's&nbsp;Curiosity rover</h2>
-        <br>
-
-          <?php            
-            echo getenv('NAME'); 
-          ?>
+        <br>          
 
         <div id="phptest"></div>
         
